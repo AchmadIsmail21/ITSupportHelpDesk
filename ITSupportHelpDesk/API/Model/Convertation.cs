@@ -5,7 +5,7 @@ using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace ITSupport_API.Model
+namespace API.Model
 {
     [Table("TB_TR_Convertations")]
     public class Convertation
