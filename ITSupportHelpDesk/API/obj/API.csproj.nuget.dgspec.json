@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\API.csproj": {}
+    "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {}
   },
   "projects": {
-    "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\API.csproj": {
+    "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\API.csproj",
+        "projectUniqueName": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\API.csproj",
+        "projectPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
         "packagesPath": "C:\\Users\\achma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\obj\\",
+        "outputPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
           "C:\\Users\\achma\\AppData\\Roaming\\NuGet\\NuGet.Config",

@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "mTQylN72rNqGFZNwg5r4ZsZwi9P0hRu8fKEFUdPj3EahUm52O9i+aeyFXaHvhHzBYx5SCCdSTP/Igb1pUtGzVA==",
+  "dgSpecHash": "EIvtqu9wzCEMBGsdj2fafCANWHh37akuUqTmC6XXxV1oAzgUAQdLcxfU1mbCWFHSgE8Weblw1EbE6c7Rr9yMRQ==",
   "success": true,
-  "projectFilePath": "C:\\Users\\achma\\source\\repos\\ITSupportHelpDesk\\API\\API.csproj",
+  "projectFilePath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
   "expectedPackageFiles": [],
   "logs": []
 }
