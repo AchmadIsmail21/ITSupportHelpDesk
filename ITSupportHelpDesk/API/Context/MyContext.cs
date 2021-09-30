@@ -19,7 +19,13 @@ namespace API.Context
         public DbSet<History> Histories { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Role> Roles { get; set; }
+        public DbSet<Staff> Staffs { get; set; }
         public DbSet<StatusCode> StatusCodes { get; set; }
         public DbSet<User> Users { get; set; }
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            modelBuilder.Entity<Role>()
+                .HasMany(r => r.User).WithOne(u => u.Role);
+        }
     }
 }
