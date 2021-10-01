@@ -7507,19 +7507,19 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\user\\.nuget\\packages\\": {}
+    "C:\\Users\\achma\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
+      "projectUniqueName": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
       "projectName": "API",
-      "projectPath": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
-      "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\user\\OneDrive - ITPLN\\Documents\\GitHub\\NETCore\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\obj\\",
+      "projectPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
+      "packagesPath": "C:\\Users\\achma\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\achma\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
       "originalTargetFrameworks": [
