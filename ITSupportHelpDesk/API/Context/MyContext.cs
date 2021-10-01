@@ -24,8 +24,51 @@ namespace API.Context
         public DbSet<User> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
+            // many to one Role -> User
             modelBuilder.Entity<Role>()
                 .HasMany(r => r.User).WithOne(u => u.Role);
+
+            // many to one StatusCode -> history
+            modelBuilder.Entity<StatusCode>()
+                .HasMany(sc => sc.History).WithOne(h => h.StatusCode);
+            
+            //many to one category -> case
+            modelBuilder.Entity<Category>()
+                .HasMany(ct => ct.Case).WithOne(cs => cs.Category);
+
+            // many to one priority -> case
+            modelBuilder.Entity<Priority>()
+                .HasMany(p => p.Case).WithOne(cs => cs.Priority);
+
+            // many to one case -> convertation
+            modelBuilder.Entity<Case>()
+                .HasMany(cs => cs.Convertation).WithOne(cv => cv.Case);
+
+            // many to one case -> history
+            modelBuilder.Entity<Case>()
+                .HasMany(cs => cs.History).WithOne(h => h.Case);
+
+            //Many to many Case -> Staff
+            modelBuilder.Entity<StaffCase>()
+                .HasKey(scs => new { scs.CaseId, scs.StaffId });
+
+            modelBuilder.Entity<StaffCase>()
+                .HasOne(scs => scs.Case).WithMany(cs => cs.StaffCase)
+                .HasForeignKey(scs => scs.CaseId);
+
+            modelBuilder.Entity<StaffCase>()
+                .HasOne(scs => scs.Staff).WithMany(st => st.StaffCase)
+                .HasForeignKey(scs => scs.StaffId);
+            //-------------------------------
+            //many to one user -> convertation
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Convertation).WithOne(cv => cv.User);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.Case).WithOne(cs => cs.User);
+
+            modelBuilder.Entity<User>()
+                .HasMany(u => u.History).WithOne(h => h.User);
         }
     }
 }
