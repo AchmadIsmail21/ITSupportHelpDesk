@@ -28,11 +28,12 @@ namespace API
         public void ConfigureServices(IServiceCollection services)
         {
             //services.AddControllers();
+            //JsonIgnore
             services.AddControllersWithViews()
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
-
+            //lazy loading
             services.AddDbContext<MyContext>(options =>
             options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("ITHelpdeskAPIContext")));
         }
