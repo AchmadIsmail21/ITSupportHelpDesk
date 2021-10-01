@@ -48,7 +48,7 @@ namespace API.Context
             modelBuilder.Entity<Case>()
                 .HasMany(cs => cs.History).WithOne(h => h.Case);
 
-            //Many to many Case -> Staff
+            //Many to many (StaffCase)Case -> Staff
             modelBuilder.Entity<StaffCase>()
                 .HasKey(scs => new { scs.CaseId, scs.StaffId });
 
@@ -60,7 +60,7 @@ namespace API.Context
                 .HasOne(scs => scs.Staff).WithMany(st => st.StaffCase)
                 .HasForeignKey(scs => scs.StaffId);
             //-------------------------------
-            //many to one user -> convertation
+            //many to one user -> convertation, user -> case, user -> history
             modelBuilder.Entity<User>()
                 .HasMany(u => u.Convertation).WithOne(cv => cv.User);
 
