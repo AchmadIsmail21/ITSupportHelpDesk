@@ -27,6 +27,16 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
+
+            //Harus install nuget package console
+            //Install-Package Microsoft.EntityFrameworkCore.SqlServer
+            //Install-Package Microsoft.EntityFrameworkCore.Design
+            //Install-Package Microsoft.EntityFrameworkCore.Tools
+
+            //Tiap ada perubahan pada model harus melakukan
+            //Add-migration nama
+            //update-database
+
             //services.AddControllers();
             //JsonIgnore
             services.AddControllersWithViews()
