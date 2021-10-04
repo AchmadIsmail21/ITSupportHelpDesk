@@ -1,4 +1,5 @@
 ﻿using API.Context;
+using API.Helper;
 using API.Model;
 using API.ViewModel;
 using Microsoft.EntityFrameworkCore;
@@ -22,6 +23,7 @@ namespace API.Repository.Data
         }
 
         public int Register(RegisterVM registerVM) {
+            //var hashPassword = HashGenerator.HashPassword(registerVM.Password);
             var result = 0;
             var checkEmail = myContext.Users.FirstOrDefault(u => u.Email == registerVM.Email);
             var checkPhone = myContext.Users.FirstOrDefault(u => u.Phone == registerVM.Phone);
@@ -31,7 +33,7 @@ namespace API.Repository.Data
                 {
                     Name = registerVM.Name,
                     Email = registerVM.Email,
-                    Password = registerVM.Password,
+                    Password = BCrypt.Net.BCrypt.HashPassword(registerVM.Password),
                     BirthDate = registerVM.BirthDate,
                     gender = (User.Gender)registerVM.gender,
                     RoleId = 1,
