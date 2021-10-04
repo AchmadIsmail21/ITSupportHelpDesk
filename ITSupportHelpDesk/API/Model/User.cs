@@ -16,6 +16,7 @@ namespace API.Model
         [Required(ErrorMessage = "Nama tidak boleh kosong")]
         public string Name { get; set; }
         [Required(ErrorMessage = "Email tidak boleh kosong")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Email Not Valid")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Password tidak Boleh kosong")]
         [StringLength(50, ErrorMessage = "Minimal Password 6 and Maximal Password 50", MinimumLength = 6)]

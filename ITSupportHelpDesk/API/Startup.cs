@@ -1,4 +1,5 @@
 using API.Context;
+using API.Repository.Data;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -27,7 +28,10 @@ namespace API
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-
+            services.AddCors(c =>
+            {
+                c.AddPolicy("AllowOrigin", options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
+            });
             //Harus install nuget package console
             //Install-Package Microsoft.EntityFrameworkCore.SqlServer
             //Install-Package Microsoft.EntityFrameworkCore.Design
@@ -43,9 +47,26 @@ namespace API
                 .AddNewtonsoftJson(options =>
                     options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
                 );
+
+            services.AddScoped<CaseRepository>();
+            services.AddScoped<CategoryRepository>();
+            services.AddScoped<ConvertationRepository>();
+            services.AddScoped<HistoryRepository>();
+            services.AddScoped<PriorityRepository>();
+            services.AddScoped<RoleRepository>();
+            services.AddScoped<StaffCaseRepository>();
+            services.AddScoped<StaffRepository>();
+            services.AddScoped<StatusCodeRepository>();
+            services.AddScoped<UserRepository>();
             //lazy loading
             services.AddDbContext<MyContext>(options =>
             options.UseLazyLoadingProxies().UseSqlServer(Configuration.GetConnectionString("ITHelpdeskAPIContext")));
+
+            //SWAGGER
+            services.AddSwaggerGen(options =>
+            {
+                options.CustomSchemaIds(type => type.ToString());
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -56,11 +77,19 @@ namespace API
                 app.UseDeveloperExceptionPage();
             }
 
+            app.UseSwagger();
+
+            app.UseSwaggerUI(c => c.SwaggerEndpoint("/swagger/v1/swagger.json", "IT HelpDesk"));
+
             app.UseHttpsRedirection();
 
             app.UseRouting();
 
+            app.UseAuthentication();
+
             app.UseAuthorization();
+
+            app.UseCors(options => options.AllowAnyOrigin().AllowAnyMethod().AllowAnyHeader());
 
             app.UseEndpoints(endpoints =>
             {
