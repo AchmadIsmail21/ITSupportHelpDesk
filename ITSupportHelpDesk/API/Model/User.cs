@@ -19,7 +19,7 @@ namespace API.Model
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Email Not Valid")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Password tidak Boleh kosong")]
-        [StringLength(50, ErrorMessage = "Minimal Password 6 and Maximal Password 50", MinimumLength = 6)]
+        [StringLength(150, ErrorMessage = "Minimal Password 6 and Maximal Password 150", MinimumLength = 6)]
         public string Password { get; set; }
         [Required(ErrorMessage = "Tanggal lahir tidak boleh kosong")]
         public DateTime BirthDate { get; set; }
