@@ -11,15 +11,22 @@ namespace API.Model
     public class History
     {
         [Key]
+        
         public int Id { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public DateTime DateTime { get; set; }
+        [Required]
         public int Level { get; set; }
-        public int UserId { get; set; }
+        
+        public int? UserId { get; set; }
         public virtual User User { get; set; }
-        public int CaseId { get; set; }
+        
+        public int? CaseId { get; set; }
         public virtual Case Case { get; set; }
-        public int StatusCodeId { get; set; }
+        
+        public int? StatusCodeId { get; set; }
         public virtual StatusCode StatusCode { get; set; }
     }
 }

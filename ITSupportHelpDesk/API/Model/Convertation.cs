@@ -14,9 +14,9 @@ namespace API.Model
         public int Id { get; set; }
         public DateTime DateTime { get; set; }
         public string Message { get; set; }
-        public int CaseId { get; set; }
+        public int? CaseId { get; set; }
         public virtual Case Case { get; set; }
-        public int UserId { get; set; }
+        public int? UserId { get; set; }
         public virtual User User { get; set; }
     }
 }

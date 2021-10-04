@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -11,19 +12,29 @@ namespace API.Model
     public class Case
     {
         [Key]
+        [Required]
         public int Id { get; set; }
+        [Required]
         public string Description { get; set; }
+        [Required]
         public DateTime StartDateTime { get; set; }
+        [Required]
         public DateTime? EndDateTime { get; set; }
         public int? Review { get; set; }
+        [Required]
         public int Level { get; set; }
+        [Required]
         public int UserId { get; set; }
         public virtual User User { get; set; }
+        [Required]
         public int PriorityId { get; set; }
         public virtual Priority Priority { get; set; }
+        [Required]
         public int CategoryId { get; set; }
         public virtual Category Category { get; set; }
+        [JsonIgnore]
         public virtual ICollection<History> History {get; set;}
+        [JsonIgnore]
         public virtual ICollection<Convertation> Convertation { get; set; }
         public virtual ICollection<StaffCase> StaffCase { get; set; }
 
