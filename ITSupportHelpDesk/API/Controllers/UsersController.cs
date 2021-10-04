@@ -1,11 +1,13 @@
 ﻿using API.Base;
 using API.Model;
 using API.Repository.Data;
+using API.ViewModel;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
 using System.Threading.Tasks;
 
 namespace API.Controllers
@@ -18,6 +20,33 @@ namespace API.Controllers
         public UsersController(UserRepository userRepository) : base(userRepository)
         {
             this.userRepository = userRepository;
+        }
+
+        [HttpPost("Register")]
+        public ActionResult Register(RegisterVM registerVM) {
+            var register = userRepository.Register(registerVM);
+            try {
+                if (register == 100) {
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Email Sudah Terdaftar"
+                    });
+                }
+                else if(register == 200){
+                    return BadRequest(new
+                    {
+                        status = HttpStatusCode.BadRequest,
+                        message = "Nomor Telepon Sudah Terdaftar"
+                    });
+                }
+            } catch { 
+            }
+            return Ok(new
+            {
+                status = HttpStatusCode.OK,
+                message = "Data Berhasil Di tambah"
+            });
         }
     }
 }

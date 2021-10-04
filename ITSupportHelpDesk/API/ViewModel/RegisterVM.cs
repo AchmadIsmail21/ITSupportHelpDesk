@@ -12,14 +12,15 @@ namespace API.ViewModel
     {
         [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
-        [Required(ErrorMessage = "Email tidak boleh kosong")]
+        [Required(ErrorMessage = "Email is required")]
         [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Email Not Valid")]
+        [DataType(DataType.EmailAddress, ErrorMessage = "E-mail is not valid")]
         public string Email { get; set; }
         [Required(ErrorMessage = "Password is required")]
         [StringLength(50, ErrorMessage = "Minimal Password 6 and Maximal Password 50", MinimumLength = 6)]
         public string Password { get; set; }
         [Required(ErrorMessage = "Birht Date is required")]
-        public DateTime BirhtDate { get; set; }
+        public DateTime BirthDate { get; set; }
         public enum Gender
         {
             Male,
