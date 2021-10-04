@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using Newtonsoft.Json.Converters;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -8,7 +10,33 @@ namespace API.ViewModel
 {
     public class RegisterVM
     {
-        [Required]
+        [Required(ErrorMessage = "Name is required")]
         public string Name { get; set; }
+        [Required(ErrorMessage = "Email tidak boleh kosong")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Email Not Valid")]
+        public string Email { get; set; }
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(50, ErrorMessage = "Minimal Password 6 and Maximal Password 50", MinimumLength = 6)]
+        public string Password { get; set; }
+        [Required(ErrorMessage = "Birht Date is required")]
+        public DateTime BirhtDate { get; set; }
+        public enum Gender
+        {
+            Male,
+            Female
+        }
+        [Required(ErrorMessage = "Gender is required")]
+        [Range(0, 1)]
+        [JsonConverter(typeof(StringEnumConverter))]
+        public Gender gender { get; set; }
+        public int RoleId { get; set; }
+        [Required(ErrorMessage = "Number Phone is required")]
+        public string Phone { get; set; }
+        [Required(ErrorMessage = "Address is required")]
+        public string Address { get; set; }
+        [Required(ErrorMessage = "Department is required")]
+        public string Department { get; set; }
+        [Required(ErrorMessage = "Company is required")]
+        public string Company { get; set; }
     }
 }
