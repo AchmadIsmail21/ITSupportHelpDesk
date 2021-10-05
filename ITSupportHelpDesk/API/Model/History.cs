@@ -19,7 +19,7 @@ namespace API.Model
         public DateTime DateTime { get; set; }
         [Required]
         public int Level { get; set; }
-        
+
         public int? UserId { get; set; }
         public virtual User User { get; set; }
         
