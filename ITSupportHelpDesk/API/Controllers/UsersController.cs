@@ -87,5 +87,43 @@ namespace API.Controllers
                 return BadRequest("Gagal login");
             }
         }
+
+        [HttpGet("GetUserByEmail/{email}")]
+        public ActionResult GetUserByEmail(string email) {
+            var get = userRepository.GetUserByEmail(email);
+
+            if (get != null)
+            {
+                return Ok(get);
+            }
+            else {
+                return BadRequest("Data dengan email tersebut tidak ditemukan");
+            }
+        }
+
+        [HttpGet("GetClients")]
+        public ActionResult GetClients() {
+            var getAllClients = userRepository.GetClients();
+            if (getAllClients != null)
+            {
+                return Ok(getAllClients);
+            }
+            else {
+                return BadRequest("Data tidak ditemukan");
+            }
+        }
+
+        [HttpGet("GetClientById/{id}")]
+        public ActionResult GetClientById(int id) {
+            var getById = userRepository.GetClientById(id);
+
+            if (getById != null)
+            {
+                return Ok(getById);
+            }
+            else {
+                return BadRequest("Data klien dengan id tersebut tidak ditemukan");
+            }
+        }
     }
 }

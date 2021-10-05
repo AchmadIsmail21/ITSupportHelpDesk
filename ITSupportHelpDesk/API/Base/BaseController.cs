@@ -42,7 +42,7 @@ namespace API.Base
                     return BadRequest(new
                     {
                         status = HttpStatusCode.BadRequest,
-                        message = "NIK tidak boleh kosong"
+                        message = "Id tidak boleh kosong"
                     });
                 }
 
@@ -97,7 +97,7 @@ namespace API.Base
             return NotFound(new
             {
                 status = HttpStatusCode.NotFound,
-                message = "Data dengan NIK tersebut Tidak Ditemukan"
+                message = "Data dengan Id tersebut Tidak Ditemukan"
                 //return Ok(personRepository.Get(NIK));
             });
         }
@@ -128,7 +128,7 @@ namespace API.Base
             return NotFound(new
             {
                 status = HttpStatusCode.NotFound,
-                message = "Data dengan NIK tersebut Tidak Ditemukan"
+                message = "Data dengan Id tersebut Tidak Ditemukan"
 
             });
         }
@@ -153,7 +153,7 @@ namespace API.Base
                 return NotFound(new
                 {
                     status = HttpStatusCode.NotFound,
-                    message = "Data dengan NIK tersebut Tidak Ditemukan"
+                    message = "Data dengan Id tersebut Tidak Ditemukan"
                 });
             }
 
