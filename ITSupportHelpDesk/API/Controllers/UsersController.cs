@@ -1,9 +1,12 @@
 ﻿using API.Base;
+using API.Context;
 using API.Model;
 using API.Repository.Data;
 using API.ViewModel;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.Extensions.Configuration;
 using Microsoft.IdentityModel.Tokens;
 using System;
 using System.Collections.Generic;
@@ -13,8 +16,6 @@ using System.Net;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
-//using Microsoft.AspNetCore.Http;
-using Microsoft.AspNetCore.Authorization;
 
 namespace API.Controllers
 {
@@ -22,6 +23,8 @@ namespace API.Controllers
     [ApiController]
     public class UsersController : BaseController<User, UserRepository, int>
     {
+        //private readonly MyContext myContext;
+        
         private readonly UserRepository userRepository;
         public UsersController(UserRepository userRepository) : base(userRepository)
         {
@@ -55,32 +58,7 @@ namespace API.Controllers
             });
         }
 
-        //[HttpGet("GetLogin")]
-        //public ActionResult GetLogin()
-        //{
-        //    var getLogin = UserRepository.GetLoginVMs();
-        //    if (getLogin == null)
-        //    {
-        //        return NotFound(new
-        //        {
-        //            status = HttpStatusCode.NotFound,
-        //            result = getLogin,
-        //            message = "Data Kosong"
-        //        });
-        //    }
-        //    else
-        //    {
-        //        return Ok(new
-        //        {
-        //            status = HttpStatusCode.OK,
-        //            result = getLogin,
-        //            message = "Success"
-        //        });
-        //    }
-
-        //}
-
-        [AllowAnonymous]
+        //[AllowAnonymous]
         [HttpPost("Login")]
         public ActionResult Login(LoginVM loginVM)
         {
@@ -107,6 +85,44 @@ namespace API.Controllers
             else
             {
                 return BadRequest("Gagal login");
+            }
+        }
+
+        [HttpGet("GetUserByEmail/{email}")]
+        public ActionResult GetUserByEmail(string email) {
+            var get = userRepository.GetUserByEmail(email);
+
+            if (get != null)
+            {
+                return Ok(get);
+            }
+            else {
+                return BadRequest("Data dengan email tersebut tidak ditemukan");
+            }
+        }
+
+        [HttpGet("GetClients")]
+        public ActionResult GetClients() {
+            var getAllClients = userRepository.GetClients();
+            if (getAllClients != null)
+            {
+                return Ok(getAllClients);
+            }
+            else {
+                return BadRequest("Data tidak ditemukan");
+            }
+        }
+
+        [HttpGet("GetClientById/{id}")]
+        public ActionResult GetClientById(int id) {
+            var getById = userRepository.GetClientById(id);
+
+            if (getById != null)
+            {
+                return Ok(getById);
+            }
+            else {
+                return BadRequest("Data klien dengan id tersebut tidak ditemukan");
             }
         }
     }

@@ -1,5 +1,4 @@
-﻿using API.Model;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -9,21 +8,11 @@ namespace API.ViewModel
 {
     public class LoginVM
     {
-        public string Id { get; set; }
-        [Required]
-        [EmailAddress]
+        [Required(ErrorMessage = "Email is required")]
+        [RegularExpression(@"^([\w\.\-]+)@([\w\-]+)((\.(\w){2,3})+)$", ErrorMessage = "Email Not Valid")]
         public string Email { get; set; }
-        [Required(ErrorMessage = "Password Harus di Isi")]
-        // [MinLength(6,ErrorMessage = "Password Minimal 6 Digit")]
+        [Required(ErrorMessage = "Password is required")]
+        [StringLength(150, ErrorMessage = "Minimal Password 6 and Maximal Password 150", MinimumLength = 6)]
         public string Password { get; set; }
-
-
-        // [Required(ErrorMessage = "New Password Harus di Isi Yang Baru")]
-        //[MinLength(6,ErrorMessage = "Password Minimal 6 Digit")]
-        public string NewPassword { get; set; }
-        public string OTP { get; set; }
-        public int RoleId { get; set; }
-
-        public virtual Role Roles { get; set; }
     }
 }
