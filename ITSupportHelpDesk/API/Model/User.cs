@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿//using Newtonsoft.Json;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
@@ -41,6 +42,7 @@ namespace API.Model
         public int RoleId { get; set; }
         public virtual Role Role { get; set; }
         [JsonIgnore]
+
         public virtual ICollection<Convertation> Convertation { get; set; }
         [JsonIgnore]
         public virtual ICollection<History> History { get; set; }

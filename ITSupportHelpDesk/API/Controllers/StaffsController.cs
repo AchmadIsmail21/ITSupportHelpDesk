@@ -20,5 +20,33 @@ namespace API.Controllers
         {
             this.staffRepository = staffRepository;
         }
+        [HttpGet("GetStaffs")]
+        public ActionResult GetStaffs()
+        {
+            var getAllStaffs= staffRepository.GetStaffs();
+            if (getAllStaffs != null)
+            {
+                return Ok(getAllStaffs);
+            }
+            else
+            {
+                return BadRequest("Data tidak ditemukan");
+            }
+        }
+
+        [HttpGet("GetStaffById/{id}")]
+        public ActionResult GetStaffById(int id)
+        {
+            var getById = staffRepository.GetStaffById(id);
+
+            if (getById != null)
+            {
+                return Ok(getById);
+            }
+            else
+            {
+                return BadRequest("Data staff dengan id tersebut tidak ditemukan");
+            }
+        }
     }
 }
