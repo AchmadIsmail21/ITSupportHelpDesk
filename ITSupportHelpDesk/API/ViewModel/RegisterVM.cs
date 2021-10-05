@@ -18,7 +18,7 @@ namespace API.ViewModel
         public string Email { get; set; }
         [Required(ErrorMessage = "Password is required")]
         //[StringLength(150, ErrorMessage = "Minimal Password 6 and Maximal Password 150", MinimumLength = 6)]
-        [RegularExpression("^(?=.[A-Za-z])(?=.)[A-Za-z]{6,150}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
+        [RegularExpression("^(?=.[A-Za-z0-9])(?=.)[A-Za-z0-9]{6,150}$", ErrorMessage = "Password harus mengadung huruf besar,huruf kecil dan angka ")]
         public string Password { get; set; }
         [Required(ErrorMessage = "Birth Date is required")]
         public DateTime BirthDate { get; set; }
