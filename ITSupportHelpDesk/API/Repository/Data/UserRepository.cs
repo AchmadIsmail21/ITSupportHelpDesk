@@ -171,5 +171,27 @@ namespace API.Repository.Data
             return all.Where(u => u.RoleName == "Client").FirstOrDefault(u => u.Id == id);
         }
 
+        //profile
+        public IEnumerable<ProfileVM> GetProfile() {
+            var all = (
+                    from u in myContext.Users
+                    join r in myContext.Roles
+                    on u.RoleId equals r.Id
+                    select new ProfileVM
+                    {
+                        Id = u.Id,
+                        Name = u.Name,
+                        Email = u.Email,
+                        BirthDate = u.BirthDate,
+                        gender = (ProfileVM.Gender)u.gender,
+                        RoleName = r.Name,
+                        Phone = u.Phone,
+                        Address = u.Address,
+                        Department = u.Department,
+                        Company = u.Company
+                    }
+                ).ToList();
+            return all;
+        }
     }
 }

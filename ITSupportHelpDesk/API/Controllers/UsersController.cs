@@ -125,5 +125,18 @@ namespace API.Controllers
                 return BadRequest("Data klien dengan id tersebut tidak ditemukan");
             }
         }
+
+        [HttpGet("GetProfile")]
+        public ActionResult GetProfile() {
+            var get = userRepository.GetProfile();
+
+            if (get != null)
+            {
+                return Ok(get);
+            }
+            else {
+                return BadRequest("Data tidak ditemukan");
+            }
+        }
     }
 }
