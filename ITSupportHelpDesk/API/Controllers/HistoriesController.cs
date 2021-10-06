@@ -19,5 +19,18 @@ namespace API.Controllers
         {
             this.historyRepository = historyRepository;
         }
+
+        [HttpGet("GetHistory")]
+        public ActionResult GetHistory() {
+            var getHistory = historyRepository.GetHistory();
+
+            if (getHistory != null)
+            {
+                return Ok(getHistory);
+            }
+            else {
+                return BadRequest("History tidak ditemukan");
+            }
+        }
     }
 }
