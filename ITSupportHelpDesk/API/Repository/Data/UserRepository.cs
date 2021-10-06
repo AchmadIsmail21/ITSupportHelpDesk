@@ -94,14 +94,14 @@ namespace API.Repository.Data
         //Loginn
         public int Login(LoginVM login)
         {
-
             var cek = myContext.Users.FirstOrDefault(u => u.Email == login.Email);
+            var validatePassword = HashGenerator.ValidatePassword(login.Password, cek.Password);
             if (cek == null)
             {
                 return 404;
             }
 
-            if (BCrypt.Net.BCrypt.Verify(login.Password, cek.Password))
+            if (validatePassword)
             {
                 return 1;
             }
@@ -172,5 +172,50 @@ namespace API.Repository.Data
             return all.Where(u => u.RoleName == "Client").FirstOrDefault(u => u.Id == id);
         }
 
+        //profile
+        public IEnumerable<ProfileVM> GetProfile() {
+            var all = (
+                    from u in myContext.Users
+                    join r in myContext.Roles
+                    on u.RoleId equals r.Id
+                    select new ProfileVM
+                    {
+                        Id = u.Id,
+                        Name = u.Name,
+                        Email = u.Email,
+                        BirthDate = u.BirthDate,
+                        gender = (ProfileVM.Gender)u.gender,
+                        RoleName = r.Name,
+                        Phone = u.Phone,
+                        Address = u.Address,
+                        Department = u.Department,
+                        Company = u.Company
+                    }
+                ).ToList();
+            return all;
+        }
+
+        //update profile
+        public int UpdateProfile(User userUpdate) {
+            var hashPassword = HashGenerator.HashPassword(userUpdate.Password);
+            var result = 0;
+            var user = myContext.Users.FirstOrDefault(u => u.Email == userUpdate.Email);
+            if (user != null) {
+                user.Email = userUpdate.Email;
+                user.Name = userUpdate.Name;
+                user.BirthDate = userUpdate.BirthDate;
+                user.Phone = userUpdate.Phone;
+                user.Address = userUpdate.Address;
+                user.Department = userUpdate.Department;
+                user.Company = userUpdate.Company;
+
+                if (userUpdate.Password != "") {
+                    user.Password = hashPassword;
+                }
+                myContext.Users.Update(user);
+                result = myContext.SaveChanges();
+            }
+            return result;
+        }
     }
 }
