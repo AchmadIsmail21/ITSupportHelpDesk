@@ -20,6 +20,7 @@ namespace API.Context
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Role> Roles { get; set; }
         public DbSet<Staff> Staffs { get; set; }
+        public DbSet<StaffCase> StaffCases { get; set; }
         public DbSet<StatusCode> StatusCodes { get; set; }
         public DbSet<User> Users { get; set; }
 
