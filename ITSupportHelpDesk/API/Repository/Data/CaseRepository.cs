@@ -31,8 +31,7 @@ namespace API.Repository.Data
                 Case cases = new Case()
                 {
                     Description = ticketVM.Description,
-                    StartDateTime = ticketVM.StartDateTime,
-                    EndDateTime = ticketVM.EndDateTime,
+                    StartDateTime = DateTime.Now,
                     Review = 0,
                     PriorityId = 1,
                     Level = 1,
