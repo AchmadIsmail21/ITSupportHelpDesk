@@ -229,5 +229,43 @@ namespace API.Repository.Data
                 ).ToList();
             return all.Where(e => e.EndDateTime == null && e.Level == level && (e.StaffId != null || e.StaffId > 0)).OrderByDescending(s => s.StartDateTime);
         }
+
+        public int NextLevel(int caseId) {
+            int result = 0;
+
+            var history = myContext.Histories.OrderByDescending(e => e.DateTime).FirstOrDefault(c => c.CaseId == caseId);
+
+            if (history == null) {
+                return 0;
+            }
+            
+            var cases = myContext.Cases.Find(caseId);
+            if (cases == null) {
+                return 0;
+            }
+
+            var staff = myContext.StaffCases.FirstOrDefault(s => s.CaseId == caseId);
+            if (history.Level < 2) {
+                cases.Level = cases.Level + 1;
+                staff.StaffId = 2;
+                myContext.Cases.Update(cases);
+                myContext.StaffCases.Update(staff);
+                result = myContext.SaveChanges();
+
+                var histories = new History()
+                {
+                    DateTime = DateTime.Now,
+                    Level = history.Level+1,
+                    Description = $"[Staff] UserId ({history.UserId}) want to help ({caseId} to next level ({history.Level + 1}))",
+                    UserId = history.UserId,
+                    CaseId = history.CaseId,
+                    StatusCodeId = 1
+                };
+                myContext.Histories.Add(histories);
+                result = myContext.SaveChanges();
+                
+            }
+            return result;
+        }
     }
 }

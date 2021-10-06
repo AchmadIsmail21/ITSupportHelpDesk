@@ -113,5 +113,19 @@ namespace API.Controllers
                 return BadRequest("Tiket Gagal Ditutup");
             }
         }
+
+        [HttpPost("NextLevel")]
+        public ActionResult NextLevel(CloseTicketVM closeTicketVM)
+        {
+            var ask = caseRepository.NextLevel(closeTicketVM.CaseId);
+            if (ask > 0)
+            {
+                return Ok("Berhasil meminta bantuan");
+            }
+            else
+            {
+                return BadRequest("Gagal meminta bantuan");
+            }
+        }
     }
 }
