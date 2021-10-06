@@ -15,11 +15,12 @@ namespace API.Repository.Data
         private readonly MyContext myContext;
         private readonly DbSet<RegisterVM> entities;
         public IConfiguration Configuration;
-        public StaffRepository(MyContext myContext, IConfiguration configuration) : base(myContext)
+        public StaffRepository(MyContext myContext) : base(myContext)
+            //, IConfiguration configuration
         {
             this.myContext = myContext;
             entities = myContext.Set<RegisterVM>();
-            Configuration = configuration;
+            //Configuration = configuration;
         }
         //Get all Data Staff
         public IEnumerable<ProfileVM> GetStaffs()
