@@ -57,5 +57,48 @@ namespace API.Controllers
                 return BadRequest("Data dengan Id tersebut tidak ditemukan");
             }
         }
+
+        [HttpGet("ViewTicketsByStaffId/{staffId}")]
+        public ActionResult ViewTicketByStaffId(int staffId)
+        {
+            var getViewTicket = caseRepository.ViewTicketByStaffId(staffId);
+            if (getViewTicket != null)
+            {
+                return Ok(getViewTicket);
+            }
+            else
+            {
+                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+            }
+        }
+
+        [HttpGet("ViewHistoryTicketsByStaffId")]
+        public ActionResult ViewHistoryTicketsByStaffId(int staffId)
+        {
+            var getViewTicket = caseRepository.ViewHistoryTicketsByStaffId(staffId);
+            if (getViewTicket != null)
+            {
+                return Ok(getViewTicket);
+            }
+            else
+            {
+                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+            }
+        }
+
+        [HttpGet("ViewTicketByLevel")]
+        public ActionResult ViewTicketByLevel(int staffId)
+        {
+            var getViewTicket = caseRepository.ViewTicketByLevel(staffId);
+            if (getViewTicket != null)
+            {
+                return Ok(getViewTicket);
+            }
+            else
+            {
+                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+            }
+        }
+
     }
 }
