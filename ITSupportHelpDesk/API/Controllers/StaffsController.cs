@@ -20,10 +20,13 @@ namespace API.Controllers
         {
             this.staffRepository = staffRepository;
         }
+
+
         [HttpGet("GetStaffs")]
         public ActionResult GetStaffs()
         {
-            var getAllStaffs= staffRepository.GetStaffs();
+            var getAllStaffs = staffRepository.GetStaffs();
+
             if (getAllStaffs != null)
             {
                 return Ok(getAllStaffs);

@@ -30,6 +30,7 @@ namespace API.Model
         public virtual Priority Priority { get; set; }
         [Required]
         public int CategoryId { get; set; }
+       
         public virtual Category Category { get; set; }
         [JsonIgnore]
         public virtual ICollection<History> History {get; set;}
