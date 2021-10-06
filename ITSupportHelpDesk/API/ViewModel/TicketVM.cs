@@ -12,7 +12,7 @@ namespace API.ViewModel
         public string Description { get; set; }
         public string Email { get; set; }
         public DateTime StartDateTime { get; set; }
-        public DateTime EndDateTime { get; set; }
+        public DateTime? EndDateTime { get; set; }
         public int CategoryId { get; set; }
         public string Message { get; set; }
         public int UserId { get; set; }

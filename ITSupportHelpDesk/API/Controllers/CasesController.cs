@@ -33,5 +33,29 @@ namespace API.Controllers
                 return BadRequest("Tiket gagal ditambahkan");
             }
         }
+
+        [HttpGet("GetCases")]
+        public ActionResult GetCases() {
+            var getCase = caseRepository.GetCases();
+            if (getCase != null)
+            {
+                return Ok(getCase);
+            }
+            else {
+                return BadRequest("Data Tidak Ditemukan");
+            }
+        }
+
+        [HttpGet("ViewTicketsByUserId/{userId}")]
+        public ActionResult ViewTicketByUserId(int userId) {
+            var getViewTicket = caseRepository.ViewTicketByUserId(userId);
+            if (getViewTicket != null)
+            {
+                return Ok(getViewTicket);
+            }
+            else {
+                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+            }
+        }
     }
 }
