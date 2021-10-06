@@ -19,11 +19,12 @@ namespace API.Repository.Data
             this.myContext = myContext;
         }
         MailHandler serviceEmail = new MailHandler();
+        //create tiket --------------------------------------------------------------------------------------
         public int CreateTicket(TicketVM ticketVM) {
             var result = 0;
             var message = "You Succes Create Ticket";
             var user = myContext.Users.Find(ticketVM.UserId);
-            if (user == null) {
+            if (user == null && user.Email == null) {
                 return 400;
             }
             serviceEmail.SendEmail(message,user.Email);
@@ -63,7 +64,7 @@ namespace API.Repository.Data
             }
             return result;
         }
-
+        //Get kasus------------------------------------------------------------------------------------------------
         public IEnumerable<CaseVM> GetCases() {
             var all = (
                     from c in myContext.Cases
@@ -90,6 +91,7 @@ namespace API.Repository.Data
             return all;
         }
 
+        //by client------------------------------------------------------------------------------------------
         public IEnumerable<CaseVM> ViewTicketByUserId(int userId) {
             var all = (
                     from c in myContext.Cases
@@ -116,6 +118,116 @@ namespace API.Repository.Data
             return all.Where(x => x.UserId == userId && (x.Review == null || x.Review <= 0));
         }
 
-        
+        //history from client----------------------------------------------------------------------------------------
+        public IEnumerable<CaseVM> ViewHistoryTicketsByUserId(int userId)
+        {
+            
+            var all = (
+                from c in myContext.Cases
+                join u in myContext.Users on c.UserId equals u.Id
+                join p in myContext.Priorities on c.PriorityId equals p.Id
+                join ct in myContext.Categories on c.CategoryId equals ct.Id
+                join scs in myContext.StaffCases on c.Id equals scs.CaseId
+                join s in myContext.Staffs on scs.StaffId equals s.Id
+                select new CaseVM
+                {
+                    Id = c.Id,
+                    Description = c.Description,
+                    StartDateTime = c.StartDateTime,
+                    EndDateTime = c.EndDateTime,
+                    Review = c.Review,
+                    Level = c.Level,
+                    UserId = u.Id,
+                    UserName = u.Name,
+                    PriorityName = p.Name,
+                    CategoryName = ct.Name,
+                    StaffId = s.Id
+                }).ToList();
+            return all.Where(x => x.UserId == userId && (x.Review != null || x.Review > 0));
+        }
+
+        //by staff------------------------------------------------------------------------------------------------------------
+        public IEnumerable<CaseVM> ViewTicketsByStaffId(int staffId)
+        {
+            //var history = myContext.Histories.OrderByDescending(e => e.DateTime).Where(u => u.UserId == userId).Select(c => c.CaseId);
+            var staff = myContext.StaffCases.Where(sc => sc.StaffId == staffId).Select(c => c.CaseId);
+            var all = (
+                from c in myContext.Cases
+                join u in myContext.Users on c.UserId equals u.Id
+                join p in myContext.Priorities on c.PriorityId equals p.Id
+                join ct in myContext.Categories on c.CategoryId equals ct.Id
+                join scs in myContext.StaffCases on c.Id equals scs.CaseId
+                join s in myContext.Staffs on scs.StaffId equals s.Id
+                select new CaseVM
+                {
+                    Id = c.Id,
+                    Description = c.Description,
+                    StartDateTime = c.StartDateTime,
+                    EndDateTime = c.EndDateTime,
+                    Review = c.Review,
+                    Level = c.Level,
+                    UserId = u.Id,
+                    UserName = u.Name,
+                    PriorityName = p.Name,
+                    CategoryName = ct.Name,
+                    StaffId = s.Id
+                }).ToList();
+            return all.Where(s => staff.Contains(s.Id) && s.EndDateTime == null);
+        }
+        //history by staff----------------------------------------------------------------------------------------------
+        public IEnumerable<CaseVM> ViewHistoryTicketsByStaffId(int staffId)
+        {
+            //var history = myContext.Histories.OrderByDescending(e => e.DateTime).Where(u => u.UserId == userId).Select(c => c.CaseId);
+            var staff = myContext.StaffCases.Where(sc => sc.StaffId == staffId).Select(c => c.CaseId);
+            var all = (
+                from c in myContext.Cases
+                join u in myContext.Users on c.UserId equals u.Id
+                join p in myContext.Priorities on c.PriorityId equals p.Id
+                join ct in myContext.Categories on c.CategoryId equals ct.Id
+                join scs in myContext.StaffCases on c.Id equals scs.CaseId
+                join s in myContext.Staffs on scs.StaffId equals s.Id
+                select new CaseVM
+                {
+                    Id = c.Id,
+                    Description = c.Description,
+                    StartDateTime = c.StartDateTime,
+                    EndDateTime = c.EndDateTime,
+                    Review = c.Review,
+                    Level = c.Level,
+                    UserId = u.Id,
+                    UserName = u.Name,
+                    PriorityName = p.Name,
+                    CategoryName = ct.Name,
+                    StaffId = s.Id
+                }).ToList();
+            return all.Where(s => staff.Contains(s.Id) && s.EndDateTime != null);
+        }
+
+        //View ticket by difficulty level------------------------------------------------------------------------
+        public IEnumerable<CaseVM> ViewTicketByLevel(int level) {
+            var all = (
+                    from c in myContext.Cases
+                    join u in myContext.Users on c.UserId equals u.Id
+                    join p in myContext.Priorities on c.PriorityId equals p.Id
+                    join ct in myContext.Categories on c.CategoryId equals ct.Id
+                    join scs in myContext.StaffCases on c.Id equals scs.CaseId
+                    join s in myContext.Staffs on scs.StaffId equals s.Id
+                    select new CaseVM
+                    {
+                        Id = c.Id,
+                        Description = c.Description,
+                        StartDateTime = c.StartDateTime,
+                        EndDateTime = c.EndDateTime,
+                        Review = c.Review,
+                        Level = c.Level,
+                        UserId = u.Id,
+                        UserName = u.Name,
+                        PriorityName = p.Name,
+                        CategoryName = ct.Name,
+                        StaffId = s.Id
+                    }
+                ).ToList();
+            return all.Where(e => e.EndDateTime == null && e.Level == level && (e.StaffId != null || e.StaffId > 0)).OrderByDescending(s => s.StartDateTime);
+        }
     }
 }
