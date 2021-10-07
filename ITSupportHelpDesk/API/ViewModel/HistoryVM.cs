@@ -12,8 +12,8 @@ namespace API.ViewModel
         public DateTime DateTime { get; set; }
         public int Level { get; set; }
         public int UserId { get; set; }
-        public int CaseId { get; set; }
-        public int StatusCodeId { get; set; }
-
+        public string UserName { get; set; }
+        public string CaseName { get; set; }
+        public string StatusCodeName { get; set; }
     }
 }

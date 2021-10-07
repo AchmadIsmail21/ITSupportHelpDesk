@@ -17,9 +17,7 @@ namespace API.Repository.Data
             this.myContext = myContext;
         }
 
-
-        public IEnumerable<HistoryVM> GetHistories()
-        {
+        public IEnumerable<HistoryVM> GetHistory() {
             var all = (
                     from h in myContext.Histories
                     join u in myContext.Users on h.UserId equals u.Id
@@ -29,15 +27,15 @@ namespace API.Repository.Data
                     {
                         Id = h.Id,
                         Description = h.Description,
-                        DateTime=h.DateTime,
-                        Level=h.Level,
-                        UserId=u.Id,
-                        CaseId=c.Id,
-                        StatusCodeId=sc.Id
-
+                        DateTime = h.DateTime,
+                        Level = h.Level,
+                        UserId = u.Id,
+                        UserName = u.Name,
+                        CaseName = c.Description,
+                        StatusCodeName = sc.Name
                     }
                 ).ToList();
-            return all;
+            return all.OrderByDescending(d => d.DateTime);
         }
     }
 }

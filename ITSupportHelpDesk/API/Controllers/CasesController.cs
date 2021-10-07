@@ -58,47 +58,74 @@ namespace API.Controllers
             }
         }
 
+        [HttpGet("ViewHistoryTicketsByUserId/{userId}")]
+        public ActionResult ViewHistoryTicketsByUserId(int userId)
+        {
+            var getHistory = caseRepository.ViewHistoryTicketsByUserId(userId);
+            if (getHistory != null)
+            {
+                return Ok(getHistory);
+            }
+            else
+            {
+                return BadRequest("Data tidak ditemukan");
+            }
+        }
+
         [HttpGet("ViewTicketsByStaffId/{staffId}")]
-        public ActionResult ViewTicketByStaffId(int staffId)
+        public ActionResult ViewTicketsByStaffId(int staffId)
         {
-            var getViewTicket = caseRepository.ViewTicketByStaffId(staffId);
-            if (getViewTicket != null)
+            var get = caseRepository.ViewTicketsByStaffId(staffId);
+            if (get != null)
             {
-                return Ok(getViewTicket);
+                return Ok(get);
             }
             else
             {
-                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+                return BadRequest("Data ticket dengan staff id tersebut tidak ditemukan");
             }
         }
 
-        [HttpGet("ViewHistoryTicketsByStaffId")]
-        public ActionResult ViewHistoryTicketsByStaffId(int staffId)
+        [HttpGet("ViewHistoryTicketByStaffId/{staffId}")]
+        public ActionResult ViewHistoryTicketByStaffId(int staffId)
         {
-            var getViewTicket = caseRepository.ViewHistoryTicketsByStaffId(staffId);
-            if (getViewTicket != null)
+            var getHistory = caseRepository.ViewHistoryTicketsByStaffId(staffId);
+            if (getHistory != null)
             {
-                return Ok(getViewTicket);
+                return Ok(getHistory);
             }
             else
             {
-                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+                return BadRequest("Data tiket dengan staff id tersebut tidak ditemukan");
             }
         }
 
-        [HttpGet("ViewTicketByLevel")]
-        public ActionResult ViewTicketByLevel(int staffId)
+        [HttpGet("ViewTicketByLevel/{level}")]
+        public ActionResult ViewTicketByLevel(int level)
         {
-            var getViewTicket = caseRepository.ViewTicketByLevel(staffId);
-            if (getViewTicket != null)
+            var get = caseRepository.ViewTicketByLevel(level);
+            if (get != null)
             {
-                return Ok(getViewTicket);
+                return Ok(get);
             }
             else
             {
-                return BadRequest("Data dengan Id tersebut tidak ditemukan");
+                return BadRequest("Tiket Gagal Ditutup");
             }
         }
 
+        [HttpPost("NextLevel")]
+        public ActionResult NextLevel(CloseTicketVM closeTicketVM)
+        {
+            var ask = caseRepository.NextLevel(closeTicketVM.CaseId);
+            if (ask > 0)
+            {
+                return Ok("Berhasil meminta bantuan");
+            }
+            else
+            {
+                return BadRequest("Gagal meminta bantuan");
+            }
+        }
     }
 }
