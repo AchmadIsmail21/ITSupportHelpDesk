@@ -127,5 +127,61 @@ namespace API.Controllers
                 return BadRequest("Gagal meminta bantuan");
             }
         }
+
+        [HttpPost("ChangePriority")]
+        public ActionResult ChangePriority(PriorityVM priority) {
+            var change = caseRepository.ChangePriority(priority);
+            if (change > 0)
+            {
+                return Ok("Berhasil mengubah prioritas");
+            }
+            else {
+                return BadRequest("Gagal mengubah prioritas");
+            }
+        }
+        
+        [HttpPost("HandleTicket")]
+        public ActionResult HandleTicket(CloseTicketVM closeTicket) {
+            //var getHandle = caseRepository.HandleTicket(closeTicket);
+            try
+            {
+                caseRepository.HandleTicket(closeTicket);
+                return Ok("Tiket Berhasil Ditangani");
+            }
+            catch (Exception e) {
+                return BadRequest(e);
+            }
+            /*if (getHandle > 0)
+            {
+                return Ok("Tiket Berhasil Ditangani");
+            }
+            else {
+                return BadRequest("Tiket gagal ditangani");
+            }*/
+        }
+
+        [HttpPost("CloseTicketById")]
+        public ActionResult CloseTicketById(CloseTicketVM closeTicket) {
+            var close = caseRepository.CloseTicketById(closeTicket);
+            if (close > 0)
+            {
+                return Ok("Tiket Berhasil Di tutup");
+            }
+            else {
+                return BadRequest("Tiket gagal ditutup");
+            }
+        }
+
+        [HttpPost("Review")]
+        public ActionResult Review(ReviewVM review) {
+            var reviewTicket = caseRepository.ReviewTicket(review);
+            if (reviewTicket > 0)
+            {
+                return Ok("Review berhasil");
+            }
+            else {
+                return BadRequest("Review gagal");
+            }
+        }
     }
 }

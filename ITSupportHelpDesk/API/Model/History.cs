@@ -18,6 +18,7 @@ namespace API.Model
         [Required]
         public DateTime DateTime { get; set; }
         [Required]
+        [Range(1,2)]
         public int Level { get; set; }
 
         public int? UserId { get; set; }
