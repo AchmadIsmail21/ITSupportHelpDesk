@@ -19,14 +19,16 @@ namespace API.Repository.Data
             this.myContext = myContext;
         }
         MailHandler serviceEmail = new MailHandler();
-        public int CreateTicket(TicketVM ticketVM) {
+        public int CreateTicket(TicketVM ticketVM)
+        {
             var result = 0;
             var message = "You Succes Create Ticket";
             var user = myContext.Users.Find(ticketVM.UserId);
-            if (user == null) {
+            if (user == null)
+            {
                 return 400;
             }
-            serviceEmail.SendEmail(message,user.Email);
+            serviceEmail.SendEmail(message, user.Email);
             {
                 Case cases = new Case()
                 {
@@ -63,7 +65,6 @@ namespace API.Repository.Data
             }
             return result;
         }
-
         public IEnumerable<CaseVM> GetCases() {
             var all = (
                     from c in myContext.Cases
