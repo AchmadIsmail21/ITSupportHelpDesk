@@ -245,9 +245,10 @@ namespace API.Repository.Data
             }
 
             var staff = myContext.StaffCases.FirstOrDefault(s => s.CaseId == caseId);
-            if (history.Level < 2) {
+            //Mendapatkan staff
+            if (history.Level <= 2) {
                 cases.Level = cases.Level + 1;
-                staff.StaffId = 2;
+                staff.StaffId = 1;
                 myContext.Cases.Update(cases);
                 myContext.StaffCases.Update(staff);
                 result = myContext.SaveChanges();
@@ -256,16 +257,145 @@ namespace API.Repository.Data
                 {
                     DateTime = DateTime.Now,
                     Level = history.Level+1,
-                    Description = $"[Staff] UserId ({history.UserId}) want to help ({caseId} to next level ({history.Level + 1}))",
+                    Description = $"[Staff] Staff id ({staff.StaffId}) want to help ({caseId} to next level ({history.Level + 1}))",
                     UserId = history.UserId,
                     CaseId = history.CaseId,
-                    StatusCodeId = 1
+                    StatusCodeId = 2
                 };
                 myContext.Histories.Add(histories);
                 result = myContext.SaveChanges();
                 
             }
             return result;
+        }
+
+        public int ChangePriority(PriorityVM priorityVM) {
+            var result = 0;
+
+            var getCases = myContext.Cases.Find(priorityVM.CaseId);
+
+            if (getCases == null) {
+                return 0;
+            }
+
+            var history = new History()
+            {
+                DateTime = DateTime.Now,
+                Description = $"(Staff) Staff id ({priorityVM.StaffId}) Change Priority of Case id ({priorityVM.CaseId}) from priority ({getCases.PriorityId}) to ({priorityVM.PriorityId})",
+                UserId = priorityVM.UserId,
+                Level = getCases.Level,
+                CaseId = getCases.Id,
+                StatusCodeId = 2
+            };
+            var getStaff = myContext.StaffCases.FirstOrDefault(s => s.CaseId == priorityVM.CaseId);
+            getStaff.StaffId = priorityVM.StaffId;
+            myContext.StaffCases.Update(getStaff);
+            result = myContext.SaveChanges();
+
+            getCases.PriorityId = priorityVM.PriorityId;
+            myContext.Cases.Update(getCases);
+            result = myContext.SaveChanges();
+
+            myContext.Histories.Add(history);
+            result = myContext.SaveChanges();
+
+            return result;
+        }
+
+        public int HandleTicket(CloseTicketVM closeTicket) {
+            var result = 0;
+
+            var getHistory = myContext.Histories.OrderByDescending(h => h.DateTime)
+                .FirstOrDefault(c => c.CaseId == closeTicket.CaseId);
+            
+            if (getHistory.Level <= 2) {
+                
+
+                var history = new History()
+                {
+                    DateTime = DateTime.Now,
+                    Description = $"(Staff) ({closeTicket.StaffId}) Handling CaseId ({closeTicket.CaseId})",
+                    Level = getHistory.Level,
+                    UserId = getHistory.UserId,
+                    CaseId = getHistory.CaseId,
+                    StatusCodeId = 2
+                };
+                var getStaff = myContext.StaffCases.FirstOrDefault(s => s.CaseId == closeTicket.CaseId);
+                //var getCases = myContext.Cases.Find(closeTicket.CaseId);
+                getStaff.StaffId = closeTicket.StaffId;
+
+                myContext.StaffCases.Update(getStaff);
+                result = myContext.SaveChanges();
+
+                myContext.Histories.Add(history);
+                result = myContext.SaveChanges();
+            }
+            return result;
+        }
+
+        public int CloseTicketById(CloseTicketVM closeTicketVM)
+        {
+            var result = 0;
+
+            var cases = myContext.Cases.Find(closeTicketVM.CaseId);
+            if (cases != null)
+            {
+                cases.EndDateTime = DateTime.Now;
+                myContext.Cases.Update(cases);
+                myContext.SaveChanges();
+
+                var lastHistory = myContext.Histories.OrderByDescending(d => d.DateTime).FirstOrDefault(h => h.CaseId == closeTicketVM.CaseId);
+                History history = new History()
+                {
+                    CaseId = cases.Id,
+                    Description = $"(System) Closed Ticket By Staff ({closeTicketVM.StaffId})",
+                    DateTime = DateTime.Now,
+                    Level = lastHistory.Level,
+                    UserId = closeTicketVM.UserId,
+                    StatusCodeId = 3
+                };
+                var getStaff = myContext.StaffCases.FirstOrDefault(s => s.CaseId == closeTicketVM.CaseId);
+                getStaff.StaffId = closeTicketVM.StaffId;
+                myContext.StaffCases.Update(getStaff);
+                result = myContext.SaveChanges();
+
+                myContext.Histories.Add(history);
+                result = myContext.SaveChanges();
+                return result;
+            }
+            else {
+                return 0;
+            }
+        }
+
+        public int ReviewTicket(ReviewVM review) {
+            var result = 0;
+            var getCase = myContext.Cases.Find(review.CaseId);
+
+            if (getCase != null)
+            {
+
+                getCase.Review = review.Review;
+                myContext.Cases.Update(getCase);
+                result = myContext.SaveChanges();
+
+                var lastHistory = myContext.Histories.OrderByDescending(e => e.DateTime).FirstOrDefault();
+                History history = new History()
+                {
+                    CaseId = getCase.Id,
+                    Description = $"(Client) Ticket ({getCase.Id} Review by client ({review.UserId}))",
+                    DateTime = DateTime.Now,
+                    Level = lastHistory.Level,
+                    UserId = review.UserId,
+                    StatusCodeId = lastHistory.StatusCodeId
+                };
+                myContext.Histories.Add(history);
+                result = myContext.SaveChanges();
+                return result;
+            }
+            else {
+                return 0;
+            }
         }
     }
 }
