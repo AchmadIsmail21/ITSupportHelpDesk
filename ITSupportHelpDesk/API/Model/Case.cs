@@ -17,7 +17,6 @@ namespace API.Model
         public string Description { get; set; }
         [Required]
         public DateTime StartDateTime { get; set; }
-        
         public DateTime? EndDateTime { get; set; }
         public int? Review { get; set; }
         [Required]
