@@ -1,5 +1,6 @@
 ﻿using API.Model;
 using Client.Base;
+using Client.Base.Urls;
 using Microsoft.AspNetCore.Http;
 using System;
 using System.Collections.Generic;
