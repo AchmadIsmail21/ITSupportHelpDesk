@@ -1,5 +1,4 @@
-﻿using Client.Repository.Interface;
-using Client.Base.Urls;
+﻿using Client.Base;
 using Client.Repository.Interface;
 using Microsoft.AspNetCore.Http;
 using Newtonsoft.Json;
@@ -8,22 +7,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
-using System.Net.Http.Headers;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace Client.Repository
 {
-    public class GeneralRepository<TEntity, TId> : IRepository<TEntity, TId>
-         where TEntity : class
+    public class GeneralRepository<TEntity, TId> : IRepository<TEntity, TId> 
+        where TEntity: class
     {
         private readonly Address address;
         private readonly string request;
         private readonly IHttpContextAccessor _contextAccessor;
         private readonly HttpClient httpClient;
 
-        public GeneralRepository(Address address, string request)
-        {
+        public GeneralRepository(Address address, string request) {
             this.address = address;
             this.request = request;
             _contextAccessor = new HttpContextAccessor();
@@ -31,7 +28,6 @@ namespace Client.Repository
             {
                 BaseAddress = new Uri(address.link)
             };
-            httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("bearer", _contextAccessor.HttpContext.Session.GetString("JWToken"));
         }
 
         public HttpStatusCode Delete(TId id)
@@ -76,21 +72,6 @@ namespace Client.Repository
             StringContent content = new StringContent(JsonConvert.SerializeObject(entity), Encoding.UTF8, "application/json");
             var result = httpClient.PostAsync(address.link + request, content).Result;
             return result.StatusCode;
-        }
-
-        HttpStatusCode IRepository<TEntity, TId>.Post(TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        HttpStatusCode IRepository<TEntity, TId>.Put(TId id, TEntity entity)
-        {
-            throw new NotImplementedException();
-        }
-
-        HttpStatusCode IRepository<TEntity, TId>.Delete(TId id)
-        {
-            throw new NotImplementedException();
         }
     }
 }

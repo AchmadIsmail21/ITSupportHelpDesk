@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace Client.Repository.Interface
 {
-   public interface IRepository<T,X>
-        where T:class
+    public interface IRepository<T, X> 
+        where T : class
     {
         Task<List<T>> Get();
         Task<T> Get(X id);
@@ -15,5 +15,4 @@ namespace Client.Repository.Interface
         HttpStatusCode Put(X id, T entity);
         HttpStatusCode Delete(X id);
     }
-   
 }

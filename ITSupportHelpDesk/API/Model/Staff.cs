@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Newtonsoft.Json;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
@@ -14,6 +15,7 @@ namespace API.Model
         public int Id { get; set; }
         [Required]
         public string Name { get; set; }
+        [JsonIgnore]
         public virtual ICollection<StaffCase> StaffCase { get; set; }
     }
 }

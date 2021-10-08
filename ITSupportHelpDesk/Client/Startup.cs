@@ -1,5 +1,3 @@
-using Client.Base.Urls;
-using Client.Repository.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -29,22 +27,13 @@ namespace Client
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddDistributedMemoryCache();
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromMinutes(10);//set 10 menit   
-            });
             services.AddSession();
-            services.AddControllersWithViews();
-            //services.AddScoped<DistrictRepository>();
-            //services.AddScoped<PersonRepository>();
-            //services.AddScoped<AccountRepository>();
-            //services.AddScoped<ProfilingRepository>();
-            //services.AddScoped<EducationRepository>();
-            //services.AddScoped<UniversityRepository>();
-            //services.AddScoped<RoleRepository>();
-            services.AddScoped<LoginRepository>();
-            services.AddScoped<Address>();
+            services.AddHttpContextAccessor();
+            //JsonIgnore
+            services.AddControllersWithViews()
+                .AddNewtonsoftJson(options =>
+                    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+                );
 
             services.AddAuthentication(JwtBearerDefaults.AuthenticationScheme).AddJwtBearer(options =>
             {
@@ -58,13 +47,8 @@ namespace Client
                     ValidIssuer = Configuration["Jwt:Issuer"],
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
-            }
-              );
-
+            });
         }
-
-
-
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
         public void Configure(IApplicationBuilder app, IWebHostEnvironment env)
@@ -80,10 +64,13 @@ namespace Client
                 app.UseHsts();
             }
             app.UseHttpsRedirection();
+
             app.UseStaticFiles();
 
             app.UseRouting();
+
             app.UseSession();
+            //Add JWToken to all incoming HTTP Request Header
             app.Use(async (context, next) =>
             {
                 var JWToken = context.Session.GetString("JWToken");
@@ -95,6 +82,7 @@ namespace Client
             });
 
             app.UseAuthentication();
+
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>
@@ -104,6 +92,5 @@ namespace Client
                     pattern: "{controller=Home}/{action=Index}/{id?}");
             });
         }
-
     }
 }
