@@ -387,3 +387,6 @@ FodyWeavers.xsd
 .idea/
 *.sln.iml
 
+*.dll
+ITSupportHelpDesk/.vs/ITSupportHelpDesk/v16/.suo
+*.pdb
