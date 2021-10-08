@@ -389,4 +389,4 @@ FodyWeavers.xsd
 
 *.dll
 ITSupportHelpDesk/.vs/ITSupportHelpDesk/v16/.suo
-*.pdb
+*.pdbs
