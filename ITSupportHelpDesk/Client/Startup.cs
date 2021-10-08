@@ -1,3 +1,6 @@
+using Client.Base;
+using Client.Repository;
+using Client.Repository.Data;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,6 +51,17 @@ namespace Client
                     IssuerSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]))
                 };
             });
+            services.AddScoped<UserRepository>();
+            services.AddScoped<CaseRepository>();
+            services.AddScoped<CategoryRepository>();
+            services.AddScoped<ConvertationRepository>();
+            services.AddScoped<HistoryRepository>();
+            services.AddScoped<PriorityRepository>();
+            services.AddScoped<RoleRepository>();
+            services.AddScoped<StaffCaseRepository>();
+            services.AddScoped<StaffRepository>();
+            services.AddScoped<StatusCodeRepository>();
+            services.AddScoped<Address>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
