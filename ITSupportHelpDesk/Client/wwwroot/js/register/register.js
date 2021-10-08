@@ -1,4 +1,4 @@
-﻿$("#register").click(function (event) {
+﻿$("#registerBtn").click(function (event) {
     event.preventDefault();
     var obj = new Object();
     obj.Name = $("#inputName").val();
@@ -29,6 +29,7 @@
             contentType: 'application/json',
             data: JSON.stringify(obj)
         }).done((result) => {
+            console.log(result)
             //alert(result);
             Swal.fire({
                 title: 'Success!',
@@ -36,9 +37,9 @@
                 type: 'success',
                 timer: 5000,
                 showConfirmButton: false
-            }).then(function () {
+            })/*.then(function () {
                 window.location.href = "/login";
-            })
+            })*/
         }).fail((error) => {
                 Swal.fire({
                     title: 'Error!',
