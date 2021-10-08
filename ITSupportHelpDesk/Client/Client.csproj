@@ -5,6 +5,13 @@
   </PropertyGroup>
 
   <ItemGroup>
+    <Compile Remove="wwwroot\lib\Template\**" />
+    <Content Remove="wwwroot\lib\Template\**" />
+    <EmbeddedResource Remove="wwwroot\lib\Template\**" />
+    <None Remove="wwwroot\lib\Template\**" />
+  </ItemGroup>
+
+  <ItemGroup>
     <PackageReference Include="Microsoft.AspNetCore.Authentication.JwtBearer" Version="3.1.8" />
     <PackageReference Include="Microsoft.AspNetCore.Mvc.NewtonsoftJson" Version="3.0.0" />
     <PackageReference Include="Microsoft.EntityFrameworkCore" Version="5.0.10" />
@@ -13,7 +20,6 @@
 
   <ItemGroup>
     <Folder Include="wwwroot\images\" />
-    <Folder Include="wwwroot\lib\Template\" />
     <Folder Include="wwwroot\LoginRegister\" />
   </ItemGroup>
 
