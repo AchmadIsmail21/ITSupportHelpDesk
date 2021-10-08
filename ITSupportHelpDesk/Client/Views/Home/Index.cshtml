@@ -56,7 +56,7 @@
                     <span class="icon icon-bar"></span>
                     <span class="icon icon-bar"></span>
                 </button>
-                <a href="#" class="navbar-brand">Digital Team</a>
+                <a href="#" class="navbar-brand">IT Helpdesk</a>
             </div>
             <div class="collapse navbar-collapse">
                 <ul class="nav navbar-nav navbar-right">
@@ -67,8 +67,16 @@
                     <li><a href="#portfolio" class="smoothScroll">PORTFOLIO</a></li>
                     @*<li><a href="#pricing" class="smoothScroll">PRICING</a></li>*@
                     <li><a href="#contact" class="smoothScroll">CONTACT</a></li>
-                    <li><a href="/Register/" class="smoothScroll">REGISTER</a></li>
-                    <li><a href="#" class="smoothScroll">LOGIN</a></li>
+                    @{ var iden = User.Identity.IsAuthenticated;}
+                    @if (iden)
+                    {
+                        <li><a asp-controller="Login" asp-action="Logout">Sign Out</a></li>
+                    }
+                    else { 
+                        <li><a href="/Register/" class="smoothScroll">REGISTER</a></li>
+                        <li><a href="/Login/" class="smoothScroll">LOGIN</a></li>
+                    
+                    }
                 </ul>
             </div>
         </div>
@@ -425,7 +433,8 @@
         <div class="container">
             <div class="row">
                 <div class="col-md-12 col-sm-12">
-                    <p>Copyright © Digital Team HTML5 Template | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>
+                    @*<p>Copyright © Digital Team HTML5 Template | Design: <a href="http://www.tooplate.com" target="_parent">Tooplate</a></p>*@
+                    <p>APL Tower 18 Jl. Letjen S.Parman, Jakarta. 11470</p>
                     <hr>
                     <ul class="social-icon">
                         <li><a href="#" class="fa fa-facebook wow fadeIn" data-wow-delay="0.3s"></a></li>

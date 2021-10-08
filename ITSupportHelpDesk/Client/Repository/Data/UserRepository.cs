@@ -38,10 +38,10 @@ namespace Client.Repository.Data
                 , Encoding.UTF8, "application/json");
             var result = await httpClient.PostAsync(request + "Login", content);
 
-            if (result.IsSuccessStatusCode) {
+            
                 string apiResponse = await result.Content.ReadAsStringAsync();
                 token = JsonConvert.DeserializeObject<JWTokenVM>(apiResponse);
-            }
+            
             return token;
         }
 
