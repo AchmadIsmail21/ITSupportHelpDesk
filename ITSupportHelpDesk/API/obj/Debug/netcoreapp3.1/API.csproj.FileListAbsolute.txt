@@ -220,4 +220,3 @@ C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreap
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.dll
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
-C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.csproj.AssemblyReference.cache
