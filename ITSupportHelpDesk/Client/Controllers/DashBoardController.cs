@@ -8,9 +8,11 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authorization;
 
 namespace Client.Controllers
 {
+    
     public class DashBoardController : BaseController<User, UserRepository, int>
     {
         private readonly UserRepository userRepository;
@@ -221,9 +223,22 @@ namespace Client.Controllers
         //Dashboard 
         public IActionResult Index()
         {
+            GetSession();
+            ViewBag.CurrentPage = "Index";
+            return View(); 
+        }
+
+        public IActionResult Tickets() {
+            GetSession();
+            ViewBag.CurrentPage = "Tickets";
             return View();
         }
 
+        public IActionResult ManageTickets() {
+            GetSession();
+            ViewBag.CurrentPage = "ManageTickets";
+            return View();
+        }
 
         public IActionResult Logout() {
             HttpContext.Session.Clear();

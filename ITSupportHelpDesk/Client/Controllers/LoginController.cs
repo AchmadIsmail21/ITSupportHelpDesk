@@ -13,8 +13,10 @@ namespace Client.Controllers
     public class LoginController : Controller
     {
         UserRepository userRepository;
+        StaffRepository staffRepository;
         public LoginController(UserRepository userRepository) {
             this.userRepository = userRepository;
+            
         }
         public IActionResult Index()
         {
@@ -22,25 +24,26 @@ namespace Client.Controllers
             return View();
         }
 
-        [HttpPost("Auth/")]
-        public async Task<IActionResult> Auth(string email, string password) {
-            LoginVM loginVM = new LoginVM();
+        [HttpPost]
+        public async Task<IActionResult> Auth(LoginVM login) {
+            /*LoginVM loginVM = new LoginVM();
             loginVM.Email = email;
-            loginVM.Password = password;
-            var jwToken = await userRepository.Auth(loginVM);
-            //var user = await userRepository.GetUserByEmail(loginVM.Email);
-
-            if (jwToken == null) {
+            loginVM.Password = password;*/
+            var jwToken = await userRepository.Auth(login);
+            var user = await userRepository.GetUserByEmail(login.Email);
+            
+            if (jwToken == null && user == null) {
                 return RedirectToAction("Index", "Login");
             }
             HttpContext.Session.SetString("JWToken", jwToken.Token);
-            /*HttpContext.Session.SetString("UserId", user.UserId.ToString());
+            HttpContext.Session.SetString("UserId", user.UserId.ToString());
             HttpContext.Session.SetString("Email", user.Email);
-            HttpContext.Session.SetString("Name", user.Name);
             HttpContext.Session.SetString("Role", user.Role);
-            HttpContext.Session.SetString("RoleId", user.RoleId.ToString());*/
+            HttpContext.Session.SetString("RoleId", user.RoleId.ToString());
+            HttpContext.Session.SetString("Name", user.Name);
             
-            return RedirectToAction("Index", "Home");
+
+            return RedirectToAction("Index", "DashBoard");
         }
        /* [HttpGet("Logout/")]
         [Authorize]

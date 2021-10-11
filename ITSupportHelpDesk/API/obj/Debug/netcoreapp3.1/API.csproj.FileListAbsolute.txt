@@ -145,3 +145,4 @@ C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debu
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.dll
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.pdb
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.genruntimeconfig.cache
+C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\API\obj\Debug\netcoreapp3.1\API.csproj.AssemblyReference.cache

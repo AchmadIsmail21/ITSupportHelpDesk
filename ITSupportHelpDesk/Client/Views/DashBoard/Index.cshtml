@@ -30,10 +30,32 @@
         <div class="row">
             @if (ViewBag.Role == "Admin Support")
             {
-                <div class="col mb-12">
+                <div class="col-12 mb-12">
                     <div class="card">
                         <div class="card-body">
-                            <div id="chart">
+                            <div class="row align-items-center">
+                                <div class="col-12 text-center ">
+                                    <h2 class="mb-3 fw-bold">Selamat Datang, @ViewBag.Name, Your Role is : @ViewBag.Role</h2>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="chartPriorityName">
+
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col-6 mb-12">
+                    <div class="card">
+                        <div class="card-body">
+                            <div id="chartGender">
 
                             </div>
                         </div>
@@ -42,13 +64,12 @@
             }
             else
             {
-                <div class="col mb-12">
+                <div class="col-12 mb-12">
                     <div class="card">
                         <div class="card-body">
                             <div class="row align-items-center">
-                                <div class="col-md-5 col-lg-7 order-md-1 pt-8"><img class="img-fluid" src="~/assets/img/illustrations/hero-header.png" alt="" /></div>
-                                <div class="col-md-7 col-lg-5 text-center text-md-start pt-5 pt-md-9">
-                                    <h3 class="mb-4 display-2 fw-bold">Welcome, @ViewBag.Name</h3>
+                                <div class="col-12 text-center ">
+                                    <h2 class="mb-3 fw-bold">Selamat Datang, @ViewBag.Name, Your Role is : @ViewBag.Role</h2>
                                 </div>
                             </div>
                         </div>

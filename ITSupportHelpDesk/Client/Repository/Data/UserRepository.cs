@@ -72,14 +72,16 @@ namespace Client.Repository.Data
             return register;
         }
 
-        /*public async Task<UserSessionVM> GetUserByEmail(string email) {
+        public async Task<UserSessionVM> GetUserByEmail(string email)
+        {
             UserSessionVM userSession = null;
 
-            using (var response = await httpClient.GetAsync(request + "GetUserByEmail/" + email)) {
+            using (var response = await httpClient.GetAsync(request + "GetUserByEmail/" + email))
+            {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 userSession = JsonConvert.DeserializeObject<UserSessionVM>(apiResponse);
             }
             return userSession;
-        }*/
+        }
     }
 }

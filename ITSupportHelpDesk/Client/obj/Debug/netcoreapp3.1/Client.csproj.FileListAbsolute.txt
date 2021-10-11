@@ -172,3 +172,5 @@ C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\D
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\Login\_LoginLayout.cshtml.g.cs
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\Index.cshtml.g.cs
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\_DashboardLayout.cshtml.g.cs
+C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\Cases.cshtml.g.cs
+C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\Tickets.cshtml.g.cs

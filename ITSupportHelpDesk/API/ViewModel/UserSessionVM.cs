@@ -12,5 +12,6 @@ namespace API.ViewModel
         public string Name { get; set; }
         public string Role { get; set; }
         public int RoleId { get; set; }
+        public int StaffId { get; set; }
     }
 }

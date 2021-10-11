@@ -119,7 +119,7 @@ namespace API.Repository.Data
                             Name = u.Name,
                             Email = u.Email,
                             Role = r.Name,
-                            RoleId = r.Id
+                            RoleId = r.Id   
                        }
                        ).ToList();
             return all.FirstOrDefault(u => u.Email == email);
