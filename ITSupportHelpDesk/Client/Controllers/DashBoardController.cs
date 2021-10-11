@@ -100,7 +100,7 @@ namespace Client.Controllers
                 return Json(result);
             }
             else {
-                return Json(null);
+                return null;
             }
         }
 

@@ -54,7 +54,7 @@ namespace Client.Repository.Data
         public async Task<List<CaseVM>> GetTicketsByUserId(int userId) {
             List<CaseVM> user = new List<CaseVM>();
 
-            using (var response = await httpClient.GetAsync(request + "ViewTicketsByUserId" + userId)) {
+            using (var response = await httpClient.GetAsync(request + "ViewTicketsByUserId/" + userId)) {
                 string apiResponse = await response.Content.ReadAsStringAsync();
                 user = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
             }
