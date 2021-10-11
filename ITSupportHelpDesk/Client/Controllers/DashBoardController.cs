@@ -151,6 +151,73 @@ namespace Client.Controllers
             }
         }
 
+        //Category Repo
+        public async Task<JsonResult> GetCategories() {
+            GetSession();
+            var result = await categoryRepository.GetCategories();
+            return Json(result);
+        }
+
+        //Convertation Repo
+        public async Task<JsonResult> GetConvertations() {
+            GetSession();
+            var result = await convertationRepository.GetConvertations();
+            return Json(result);
+        }
+
+        [HttpGet("{caseId}")]
+        public async Task<IActionResult> GetConvertationsByCaseId(int caseId) {
+            var result = await convertationRepository.GetConvertationByCaseId(caseId);
+            return Json(result);
+        }
+
+        //History Repo
+        public async Task<JsonResult> GetHistories() {
+            GetSession();
+            var result = await historyRepository.GetHistories();
+            return Json(result);
+        }
+
+        //Priority Repo
+        public async Task<JsonResult> GetPriorities() {
+            GetSession();
+            var result = await priorityRepository.GetPriorities();
+            return Json(result);
+        }
+
+        //Role Repo
+        public async Task<JsonResult> GetRoles() {
+            GetSession();
+            var result = await roleRepository.GetRoles();
+            return Json(result);
+        }
+
+        //Staff Repo
+        public async Task<JsonResult> GetStaffs() {
+            GetSession();
+            var result = await staffRepository.GetStaffs();
+            return Json(result);
+        }
+        [HttpGet("{staffId}")]
+        public async Task<IActionResult> GetStaffById(int staffId) {
+            var result = await staffRepository.GetStaffById(staffId);
+            return Json(result);
+        }
+
+        //StatusCode Repo
+        public async Task<JsonResult> GetStatusCodes() {
+            GetSession();
+            var result = await statusCodeRepository.GetStatusCodes();
+            return Json(result);
+        }
+
+        //User repo
+        public async Task<JsonResult> GetUsers() {
+            GetSession();
+            var result = await userRepository.GetUsers();
+            return Json(result);
+        }
+
         //Dashboard 
         public IActionResult Index()
         {

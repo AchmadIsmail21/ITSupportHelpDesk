@@ -1,6 +1,7 @@
 ﻿using API.Model;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -21,9 +22,21 @@ namespace Client.Repository.Data
             this.address = address;
             this.request = request;
             _contextAccessor = new HttpContextAccessor();
-            httpClient = new HttpClient {
+            httpClient = new HttpClient
+            {
                 BaseAddress = new Uri(address.link)
-        };
+            };
+        }
+
+        public async Task<List<Role>> GetRoles() {
+            List<Role> roles = new List<Role>();
+
+            using (var response = await httpClient.GetAsync(request)) 
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                roles = JsonConvert.DeserializeObject<List<Role>>(apiResponse);
+            }
+            return roles;
         }
     }
 }

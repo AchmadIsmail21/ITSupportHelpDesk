@@ -1,6 +1,7 @@
 ﻿using API.Model;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,18 @@ namespace Client.Repository.Data
             {
                 BaseAddress = new Uri(address.link)
             };
+        }
+
+        public async Task<List<StatusCode>> GetStatusCodes() {
+            List<StatusCode> statusCodes = new List<StatusCode>();
+
+            using (var response = await httpClient.GetAsync(request))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                statusCodes = JsonConvert.DeserializeObject<List<StatusCode>>(apiResponse);
+            }
+            return statusCodes;
+
         }
     }
 }

@@ -1,6 +1,8 @@
 ﻿using API.Model;
+using API.ViewModel;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +27,17 @@ namespace Client.Repository.Data
             {
                 BaseAddress = new Uri(address.link)
             };
+        }
+
+        public async Task<List<HistoryVM>> GetHistories() {
+            List<HistoryVM> histories = new List<HistoryVM>();
+
+            using (var response = await httpClient.GetAsync(request))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                histories = JsonConvert.DeserializeObject<List<HistoryVM>>(apiResponse);
+            }
+            return histories;
         }
     }
 }

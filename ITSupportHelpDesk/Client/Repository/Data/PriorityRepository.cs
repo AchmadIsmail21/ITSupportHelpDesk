@@ -1,6 +1,7 @@
 ﻿using API.Model;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,15 @@ namespace Client.Repository.Data
             {
                 BaseAddress = new Uri(address.link)
             };
+        }
+        public async Task<List<Priority>> GetPriorities() {
+            List<Priority> priorities = new List<Priority>();
+
+            using (var response = await httpClient.GetAsync(request)) {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                priorities = JsonConvert.DeserializeObject<List<Priority>>(apiResponse);
+            }
+            return priorities;
         }
     }
 }

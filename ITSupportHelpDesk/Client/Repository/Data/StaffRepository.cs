@@ -1,6 +1,7 @@
 ﻿using API.Model;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -25,6 +26,27 @@ namespace Client.Repository.Data
             {
                 BaseAddress = new Uri(address.link)
             };
+        }
+
+        public async Task<List<Staff>> GetStaffs() {
+            List<Staff> staffs = new List<Staff>();
+            using (var response = await httpClient.GetAsync(request))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                staffs = JsonConvert.DeserializeObject<List<Staff>>(apiResponse);
+            }
+            return staffs;
+        }
+
+        public async Task<Staff> GetStaffById(int staffId) {
+            Staff staff = null;
+            using (var response = await httpClient.GetAsync(request + "GetStaffById/" + staffId)) {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+
+                staff = JsonConvert.DeserializeObject<Staff>(apiResponse);
+            }
+            return staff;
+
         }
     }
 }
