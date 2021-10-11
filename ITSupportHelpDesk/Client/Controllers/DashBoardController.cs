@@ -102,6 +102,55 @@ namespace Client.Controllers
             }
         }
 
+        public async Task<JsonResult> GetHistoryTicketsUser() {
+            GetSession();
+            if (ViewBag.UserId != null)
+            {
+                var result = await caseRepository.GetHistoryTicketsByUserId(Int32.Parse(ViewBag.UserId));
+                return Json(result);
+            }
+            else {
+                return Json(null);
+            }
+        }
+
+        public async Task<JsonResult> GetHistoryHandleTickets() {
+            GetSession();
+            if (ViewBag.StaffId != null)
+            {
+                var result = await caseRepository.GetHistoryTicketsByStaffId(Int32.Parse(ViewBag.StaffId));
+                return Json(result);
+            }
+            else {
+                return Json(null);
+            }
+        }
+
+        public async Task<JsonResult> GetTicketsByLevel() {
+            GetSession();
+            if (ViewBag.Role != null)
+            {
+                var level = 0;
+                if (ViewBag.Role == "IT Support")
+                {
+                    level = 2;
+                }
+                else if (ViewBag.Role == "Admin Support")
+                {
+                    level = 1;
+                }
+                else
+                {
+                    level = 0;
+                }
+                var result = await caseRepository.GetTicketsByLevel(level);
+                return Json(result);
+            }
+            else {
+                return Json(null);
+            }
+        }
+
         //Dashboard 
         public IActionResult Index()
         {

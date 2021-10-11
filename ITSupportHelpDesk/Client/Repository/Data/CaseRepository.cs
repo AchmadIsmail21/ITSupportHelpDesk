@@ -61,5 +61,42 @@ namespace Client.Repository.Data
             return user;
         }
 
+        public async Task<List<CaseVM>> GetHistoryTicketsByUserId(int userId)
+        {
+            List<CaseVM> data = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "ViewHistoryTicketsByUserId/" + userId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return data;
+        }
+
+
+        public async Task<List<CaseVM>> GetHistoryTicketsByStaffId(int staffId)
+        {
+            List<CaseVM> data = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "ViewHistoryTicketByStaffId/" + staffId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return data;
+        }
+
+        public async Task<List<CaseVM>> GetTicketsByLevel(int level)
+        {
+            List<CaseVM> data = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "ViewTicketByLevel/" + level))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return data;
+        }
+
     }
 }
