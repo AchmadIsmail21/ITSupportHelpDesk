@@ -390,3 +390,7 @@ FodyWeavers.xsd
 *.dll
 ITSupportHelpDesk/.vs/ITSupportHelpDesk/v16/.suo
 *.pdb
+*.v2
+ITSupportHelpDesk/.vs/ITSupportHelpDesk/v16/.suo
+*.dll
+*.pdb

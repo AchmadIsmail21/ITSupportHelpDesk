@@ -1,6 +1,8 @@
 ﻿using API.Model;
+using API.ViewModel;
 using Client.Base;
 using Microsoft.AspNetCore.Http;
+using Newtonsoft.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -26,5 +28,38 @@ namespace Client.Repository.Data
                 BaseAddress = new Uri(address.link)
             };
         }
+
+        public async Task<List<CaseVM>> GetCase() { 
+            List<CaseVM> cases = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request)) {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                cases = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return cases;
+        }
+
+        public async Task<List<CaseVM>> GetTicketsByStaffId(int staffId)
+        {
+            List<CaseVM> data = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "ViewTicketsByStaffId/" + staffId))
+            {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                data = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return data;
+        }
+
+        public async Task<List<CaseVM>> GetTicketsByUserId(int userId) {
+            List<CaseVM> user = new List<CaseVM>();
+
+            using (var response = await httpClient.GetAsync(request + "ViewTicketsByUserId" + userId)) {
+                string apiResponse = await response.Content.ReadAsStringAsync();
+                user = JsonConvert.DeserializeObject<List<CaseVM>>(apiResponse);
+            }
+            return user;
+        }
+
     }
 }
