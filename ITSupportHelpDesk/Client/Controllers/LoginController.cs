@@ -40,7 +40,7 @@ namespace Client.Controllers
             HttpContext.Session.SetString("Role", user.Role);
             HttpContext.Session.SetString("RoleId", user.RoleId.ToString());*/
             
-            return RedirectToAction("Index", "Home");
+            return RedirectToAction("Index", "DashBoard");
         }
        /* [HttpGet("Logout/")]
         [Authorize]

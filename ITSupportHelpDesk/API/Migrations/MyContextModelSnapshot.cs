@@ -210,9 +210,17 @@ namespace API.Migrations
                     b.Property<int>("Id")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StaffCaseCaseId")
+                        .HasColumnType("int");
+
+                    b.Property<int?>("StaffCaseStaffId")
+                        .HasColumnType("int");
+
                     b.HasKey("CaseId", "StaffId");
 
                     b.HasIndex("StaffId");
+
+                    b.HasIndex("StaffCaseCaseId", "StaffCaseStaffId");
 
                     b.ToTable("TB_TR_StaffCases");
                 });
@@ -366,6 +374,10 @@ namespace API.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("API.Model.StaffCase", null)
+                        .WithMany("StaffCases")
+                        .HasForeignKey("StaffCaseCaseId", "StaffCaseStaffId");
+
                     b.Navigation("Case");
 
                     b.Navigation("Staff");
@@ -409,6 +421,11 @@ namespace API.Migrations
             modelBuilder.Entity("API.Model.Staff", b =>
                 {
                     b.Navigation("StaffCase");
+                });
+
+            modelBuilder.Entity("API.Model.StaffCase", b =>
+                {
+                    b.Navigation("StaffCases");
                 });
 
             modelBuilder.Entity("API.Model.StatusCode", b =>

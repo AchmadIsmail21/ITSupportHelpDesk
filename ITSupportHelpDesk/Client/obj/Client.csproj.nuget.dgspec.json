@@ -1,20 +1,20 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj": {}
+    "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj": {}
   },
   "projects": {
-    "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {
+    "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
+        "projectUniqueName": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
         "projectName": "API",
-        "projectPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
-        "packagesPath": "C:\\Users\\achma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\obj\\",
+        "projectPath": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\achma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -70,19 +70,7 @@
               "target": "Package",
               "version": "[5.0.10, )"
             },
-            "Microsoft.VisualStudio.Web.CodeGeneration.Design": {
-              "target": "Package",
-              "version": "[3.1.5, )"
-            },
-            "Newtonsoft.Json": {
-              "target": "Package",
-              "version": "[13.0.1, )"
-            },
             "Swashbuckle.AspNetCore": {
-              "target": "Package",
-              "version": "[6.2.2, )"
-            },
-            "Swashbuckle.AspNetCore.Swagger": {
               "target": "Package",
               "version": "[6.2.2, )"
             },
@@ -113,17 +101,17 @@
         }
       }
     },
-    "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj": {
+    "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj",
+        "projectUniqueName": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj",
         "projectName": "Client",
-        "projectPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj",
-        "packagesPath": "C:\\Users\\achma\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\obj\\",
+        "projectPath": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\Client.csproj",
+        "packagesPath": "C:\\Users\\user\\.nuget\\packages\\",
+        "outputPath": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\Client\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\achma\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\user\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],
         "originalTargetFrameworks": [
@@ -137,8 +125,8 @@
           "netcoreapp3.1": {
             "targetAlias": "netcoreapp3.1",
             "projectReferences": {
-              "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {
-                "projectPath": "C:\\Users\\achma\\Documents\\GitHub\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj"
+              "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj": {
+                "projectPath": "C:\\ITSupportHelpDesk\\ITSupportHelpDesk\\ITSupportHelpDesk\\API\\API.csproj"
               }
             }
           }

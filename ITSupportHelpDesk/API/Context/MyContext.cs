@@ -23,6 +23,7 @@ namespace API.Context
         public DbSet<StaffCase> StaffCases { get; set; }
         public DbSet<StatusCode> StatusCodes { get; set; }
         public DbSet<User> Users { get; set; }
+        
 
         protected override void OnModelCreating(ModelBuilder modelBuilder) {
             // many to one Role -> User

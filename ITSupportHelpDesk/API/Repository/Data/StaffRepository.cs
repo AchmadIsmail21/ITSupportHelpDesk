@@ -2,6 +2,7 @@
 using API.Model;
 using API.ViewModel;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.Extensions.Configuration;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -13,12 +14,15 @@ namespace API.Repository.Data
     {
         private readonly MyContext myContext;
         private readonly DbSet<RegisterVM> entities;
+        public IConfiguration Configuration;
         public StaffRepository(MyContext myContext) : base(myContext)
+            //, IConfiguration configuration
         {
             this.myContext = myContext;
             entities = myContext.Set<RegisterVM>();
+            //Configuration = configuration;
         }
-
+        //Get all Data Staff
         public IEnumerable<ProfileVM> GetStaffs()
         {
             //User user = new User();

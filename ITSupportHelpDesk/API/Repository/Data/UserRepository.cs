@@ -13,6 +13,7 @@ using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
 
+
 namespace API.Repository.Data
 {
     public class UserRepository : GeneralRepository<MyContext, User, int>
@@ -42,7 +43,7 @@ namespace API.Repository.Data
                     Password = hashPassword,
                     BirthDate = registerVM.BirthDate,
                     gender = (User.Gender)registerVM.gender,
-                    RoleId = 1,
+                    RoleId = registerVM.RoleId,
                     Phone = registerVM.Phone,
                     Address = registerVM.Address,
                     Department = registerVM.Department,
