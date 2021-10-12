@@ -1,4 +1,5 @@
 ﻿using API.Model;
+using API.ViewModel;
 using Client.Base;
 using Client.Base.Urls;
 using Microsoft.AspNetCore.Http;
@@ -27,5 +28,7 @@ namespace Client.Repository.Data
                 BaseAddress = new Uri(address.link)
             };
         }
+
+      
     }
 }

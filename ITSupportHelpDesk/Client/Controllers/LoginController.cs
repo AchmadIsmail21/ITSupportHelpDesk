@@ -31,7 +31,8 @@ namespace Client.Controllers
             //var user = await userRepository.GetUserByEmail(loginVM.Email);
 
             if (jwToken == null) {
-                return RedirectToAction("Index", "Login");
+                return RedirectToAction("Index");
+                //return RedirectToAction("Index", "Login");
             }
             HttpContext.Session.SetString("JWToken", jwToken.Token);
             /*HttpContext.Session.SetString("UserId", user.UserId.ToString());

@@ -20,6 +20,7 @@ namespace API.Repository.Data
     {
         private readonly MyContext myContext;
         private readonly DbSet<RegisterVM> entities;
+        public DbSet<User> Users { get; set; }
         public IConfiguration Configuration;
 
         public UserRepository(MyContext myContext, IConfiguration configuration) : base(myContext)
