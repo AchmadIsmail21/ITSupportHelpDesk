@@ -27,10 +27,10 @@ namespace API.Controllers
             var create = convertationRepository.CreateConvertation(createConvertationVM);
             if (create > 0)
             {
-                return Ok("Anda Berhasil membuat tiket anda");
+                return Ok("Anda Berhasil memulai percakapan anda");
             }
             else {
-                return BadRequest("Gagal membuat tiket");
+                return BadRequest("Gagal membuat percakapan");
             }
         }
 

@@ -4,6 +4,7 @@ using API.Model;
 using API.Repository.Data;
 using API.ViewModel;
 using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Cors;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
@@ -30,7 +31,7 @@ namespace API.Controllers
         {
             this.userRepository = userRepository;
         }
-
+        [EnableCors("AllowOrigin")]
         [HttpPost("Register")]
         public ActionResult Register(RegisterVM registerVM) {
             var register = userRepository.Register(registerVM);
@@ -57,7 +58,7 @@ namespace API.Controllers
                 message = "Data Berhasil Di tambah"
             });
         }
-
+        [EnableCors("AllowOrigin")]
         //[AllowAnonymous]
         [HttpPost("Login")]
         public ActionResult Login(LoginVM loginVM)
@@ -100,7 +101,7 @@ namespace API.Controllers
                 return BadRequest("Data dengan email tersebut tidak ditemukan");
             }
         }
-
+        [Authorize]
         [HttpGet("GetClients")]
         public ActionResult GetClients() {
             var getAllClients = userRepository.GetClients();
@@ -112,7 +113,7 @@ namespace API.Controllers
                 return BadRequest("Data tidak ditemukan");
             }
         }
-
+        [Authorize]
         [HttpGet("GetClientById/{id}")]
         public ActionResult GetClientById(int id) {
             var getById = userRepository.GetClientById(id);

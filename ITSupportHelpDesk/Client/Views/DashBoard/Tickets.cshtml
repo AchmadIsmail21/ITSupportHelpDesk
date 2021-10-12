@@ -14,13 +14,16 @@
             <div class="row mb-2">
                 <div class="col-sm-6">
                     <h1>Tickets</h1>
-                    <span title="Create Ticket" data-toggle="tooltip" data-placement="right"><button type="button" class="btn btn-success" data-toggle="modal" data-target="#createModal" onclick="openCreateTicket()"><i class="fas">Tambah Ticket</i></button></span>
+                    
                 </div>
                 <div class="col-sm-6">
                     <ol class="breadcrumb float-sm-right">
                         <li class="breadcrumb-item"><a href="/Dashboard/">Dashboard</a></li>
                         <li class="breadcrumb-item active">Tickets</li>
                     </ol>
+                </div>
+                <div class="col-12">
+                    <span title="Create Ticket" data-toggle="tooltip" data-placement="right"><button type="button" class="btn btn-success mt-3 float-right" data-toggle="modal" data-target="#createModal" onclick="openCreateTicket()"><i class="fas">Tambah Ticket</i></button></span>
                 </div>
             </div>
         </div><!-- /.container-fluid -->
@@ -34,7 +37,7 @@
                     <div class="card">
                         <div class="card-header p-2">
                             <ul class="nav nav-pills">
-                                <li class="nav-item"><a class="nav-link active" href="#ticket" data-toggle="tab">On Going</a></li>
+                                <li class="nav-item"><a class="nav-link active" href="#ticket" data-toggle="tab">Progress</a></li>
                                 <li class="nav-item"><a class="nav-link" href="#history" data-toggle="tab">History</a></li>
                             </ul>
                         </div><!-- /.card-header -->
@@ -63,8 +66,8 @@
                                             <tr>
                                                 <th>No</th>
                                                 <th>Description</th>
-                                                <th>Created Date</th>
-                                                <th>Closed Date</th>
+                                                <th>Start Open Date</th>
+                                                <th>End Closed Date</th>
                                                 <th>Status</th>
                                                 <th>Priority</th>
                                                 <th>Category</th>
@@ -101,6 +104,8 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+
+            <!--Form Create Ticket-->
             <form class="needs-validation" novalidate id="formCreate" action="javascript:createTicket()">
                 <div class="modal-body">
                     <div class="form-row">
@@ -179,7 +184,7 @@
             <div class="modal-header">
                 <h5 class="modal-title">Convertation</h5>
                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">Chat</span>
+                    <span aria-hidden="true">x</span>
                 </button>
             </div>
 

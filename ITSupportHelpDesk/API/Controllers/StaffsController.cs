@@ -1,6 +1,7 @@
 ﻿using API.Base;
 using API.Model;
 using API.Repository.Data;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using System;
@@ -20,7 +21,7 @@ namespace API.Controllers
         {
             this.staffRepository = staffRepository;
         }
-
+        [Authorize]
         [HttpGet("GetStaffs")]
         public ActionResult GetStaffs()
         {
@@ -34,7 +35,7 @@ namespace API.Controllers
                 return BadRequest("Data tidak ditemukan");
             }
         }
-
+        [Authorize]
         [HttpGet("GetStaffById/{id}")]
         public ActionResult GetStaffById(int id)
         {

@@ -73,8 +73,8 @@ namespace API.Repository.Data
                     new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.ToString()),
                     new Claim("Id", user.Id.ToString()),
                     new Claim("Email", user.Email),
-                    new Claim("role",ar.Name)
-                    //new Claim(ClaimTypes.Role,ar.Role.RoleName)
+                    new Claim("Role",ar.Name)
+                    
                    };
 
             var key = new SymmetricSecurityKey(Encoding.UTF8.GetBytes(Configuration["Jwt:Key"]));
@@ -148,6 +148,7 @@ namespace API.Repository.Data
                 ).ToList();
             return all.Where(rn => rn.RoleName == "Client");
         }
+
         //get data client by Id
         public ProfileVM GetClientById(int id) {
             var all = (

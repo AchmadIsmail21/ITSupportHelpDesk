@@ -12,7 +12,9 @@ using Microsoft.AspNetCore.Authorization;
 
 namespace Client.Controllers
 {
-    
+    /*[Authorize(Roles = "Client, Admin Support, IT Support")]*/
+    /*[Route("[controller]")]*/
+    [Authorize]
     public class DashBoardController : BaseController<User, UserRepository, int>
     {
         private readonly UserRepository userRepository;
@@ -220,20 +222,21 @@ namespace Client.Controllers
             return Json(result);
         }
 
-        //Dashboard 
+        //Dashboard
+        
         public IActionResult Index()
         {
-            GetSession();
-            ViewBag.CurrentPage = "Index";
-            return View(); 
+                GetSession();
+                ViewBag.CurrentPage = "DashboardIndex";
+                return View(); 
         }
-
+        
         public IActionResult Tickets() {
             GetSession();
             ViewBag.CurrentPage = "Tickets";
             return View();
         }
-
+        //[Authorize]
         public IActionResult ManageTickets() {
             GetSession();
             ViewBag.CurrentPage = "ManageTickets";
