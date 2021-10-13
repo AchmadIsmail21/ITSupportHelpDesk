@@ -58,8 +58,6 @@ namespace Client
             services.AddScoped<HistoryRepository>();
             services.AddScoped<PriorityRepository>();
             services.AddScoped<RoleRepository>();
-            services.AddScoped<StaffCaseRepository>();
-            services.AddScoped<StaffRepository>();
             services.AddScoped<StatusCodeRepository>();
             services.AddScoped<Address>();
         }

@@ -45,6 +45,9 @@ namespace API.Migrations
                     b.Property<int?>("Review")
                         .HasColumnType("int");
 
+                    b.Property<int?>("StaffId")
+                        .HasColumnType("int");
+
                     b.Property<DateTime>("StartDateTime")
                         .HasColumnType("datetime2");
 
@@ -183,40 +186,6 @@ namespace API.Migrations
                     b.ToTable("TB_M_Roles");
                 });
 
-            modelBuilder.Entity("API.Model.Staff", b =>
-                {
-                    b.Property<int>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("int")
-                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
-
-                    b.Property<string>("Name")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("TB_M_Staffs");
-                });
-
-            modelBuilder.Entity("API.Model.StaffCase", b =>
-                {
-                    b.Property<int?>("CaseId")
-                        .HasColumnType("int");
-
-                    b.Property<int?>("StaffId")
-                        .HasColumnType("int");
-
-                    b.Property<int>("Id")
-                        .HasColumnType("int");
-
-                    b.HasKey("CaseId", "StaffId");
-
-                    b.HasIndex("StaffId");
-
-                    b.ToTable("TB_TR_StaffCases");
-                });
-
             modelBuilder.Entity("API.Model.StatusCode", b =>
                 {
                     b.Property<int>("Id")
@@ -352,25 +321,6 @@ namespace API.Migrations
                     b.Navigation("User");
                 });
 
-            modelBuilder.Entity("API.Model.StaffCase", b =>
-                {
-                    b.HasOne("API.Model.Case", "Case")
-                        .WithMany("StaffCase")
-                        .HasForeignKey("CaseId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.HasOne("API.Model.Staff", "Staff")
-                        .WithMany("StaffCase")
-                        .HasForeignKey("StaffId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Case");
-
-                    b.Navigation("Staff");
-                });
-
             modelBuilder.Entity("API.Model.User", b =>
                 {
                     b.HasOne("API.Model.Role", "Role")
@@ -387,8 +337,6 @@ namespace API.Migrations
                     b.Navigation("Convertation");
 
                     b.Navigation("History");
-
-                    b.Navigation("StaffCase");
                 });
 
             modelBuilder.Entity("API.Model.Category", b =>
@@ -404,11 +352,6 @@ namespace API.Migrations
             modelBuilder.Entity("API.Model.Role", b =>
                 {
                     b.Navigation("User");
-                });
-
-            modelBuilder.Entity("API.Model.Staff", b =>
-                {
-                    b.Navigation("StaffCase");
                 });
 
             modelBuilder.Entity("API.Model.StatusCode", b =>

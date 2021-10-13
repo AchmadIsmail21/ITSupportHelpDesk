@@ -72,7 +72,7 @@ namespace API.Controllers
             }
         }
 
-        [HttpGet("ViewTicketsByStaffId/{staffId}")]
+       /* [HttpGet("ViewTicketsByStaffId/{staffId}")]
         public ActionResult ViewTicketsByStaffId(int staffId)
         {
             var get = caseRepository.ViewTicketsByStaffId(staffId);
@@ -84,9 +84,9 @@ namespace API.Controllers
             {
                 return BadRequest("Data ticket dengan staff id tersebut tidak ditemukan");
             }
-        }
+        }*/
 
-        [HttpGet("ViewHistoryTicketByStaffId/{staffId}")]
+        /*[HttpGet("ViewHistoryTicketByStaffId/{staffId}")]
         public ActionResult ViewHistoryTicketByStaffId(int staffId)
         {
             var getHistory = caseRepository.ViewHistoryTicketsByStaffId(staffId);
@@ -98,7 +98,7 @@ namespace API.Controllers
             {
                 return BadRequest("Data tiket dengan staff id tersebut tidak ditemukan");
             }
-        }
+        }*/
 
         [HttpGet("ViewTicketByLevel/{level}")]
         public ActionResult ViewTicketByLevel(int level)

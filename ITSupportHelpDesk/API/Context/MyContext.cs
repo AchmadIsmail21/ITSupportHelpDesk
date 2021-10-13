@@ -19,8 +19,6 @@ namespace API.Context
         public DbSet<History> Histories { get; set; }
         public DbSet<Priority> Priorities { get; set; }
         public DbSet<Role> Roles { get; set; }
-        public DbSet<Staff> Staffs { get; set; }
-        public DbSet<StaffCase> StaffCases { get; set; }
         public DbSet<StatusCode> StatusCodes { get; set; }
         public DbSet<User> Users { get; set; }
 
@@ -49,17 +47,6 @@ namespace API.Context
             modelBuilder.Entity<Case>()
                 .HasMany(cs => cs.History).WithOne(h => h.Case);
 
-            //Many to many (StaffCase)Case -> Staff
-            modelBuilder.Entity<StaffCase>()
-                .HasKey(scs => new { scs.CaseId, scs.StaffId });
-
-            modelBuilder.Entity<StaffCase>()
-                .HasOne(scs => scs.Case).WithMany(cs => cs.StaffCase)
-                .HasForeignKey(scs => scs.CaseId);
-
-            modelBuilder.Entity<StaffCase>()
-                .HasOne(scs => scs.Staff).WithMany(st => st.StaffCase)
-                .HasForeignKey(scs => scs.StaffId);
             //-------------------------------
             //many to one user -> convertation, user -> case, user -> history
             modelBuilder.Entity<User>()

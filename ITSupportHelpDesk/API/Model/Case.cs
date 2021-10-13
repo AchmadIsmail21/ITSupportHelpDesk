@@ -21,6 +21,7 @@ namespace API.Model
         public int? Review { get; set; }
         [Required]
         public int Level { get; set; }
+        public int? StaffId { get; set; }
         [Required]
         public int UserId { get; set; }
         public virtual User User { get; set; }
@@ -34,7 +35,6 @@ namespace API.Model
         public virtual ICollection<History> History {get; set;}
         [JsonIgnore]
         public virtual ICollection<Convertation> Convertation { get; set; }
-        public virtual ICollection<StaffCase> StaffCase { get; set; }
 
     }
 }

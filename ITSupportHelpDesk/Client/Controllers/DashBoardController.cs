@@ -24,8 +24,7 @@ namespace Client.Controllers
         private readonly HistoryRepository historyRepository;
         private readonly PriorityRepository priorityRepository;
         private readonly RoleRepository roleRepository;
-        private readonly StaffCaseRepository staffCaseRepository;
-        private readonly StaffRepository staffRepository;
+        
         private readonly StatusCodeRepository statusCodeRepository;
 
         public DashBoardController(UserRepository userRepository,
@@ -35,8 +34,6 @@ namespace Client.Controllers
          HistoryRepository historyRepository,
          PriorityRepository priorityRepository,
          RoleRepository roleRepository,
-         StaffCaseRepository staffCaseRepository,
-         StaffRepository staffRepository,
          StatusCodeRepository statusCodeRepository) : base(userRepository)
         {
             this.userRepository = userRepository;
@@ -46,8 +43,6 @@ namespace Client.Controllers
             this.historyRepository = historyRepository;
             this.priorityRepository = priorityRepository;
             this.roleRepository = roleRepository;
-            this.staffCaseRepository = staffCaseRepository;
-            this.staffRepository = staffRepository;
             this.statusCodeRepository = statusCodeRepository;
         }
 
@@ -57,7 +52,7 @@ namespace Client.Controllers
             ViewBag.Role = HttpContext.Session.GetString("Role");
             ViewBag.RoleId = HttpContext.Session.GetString("RoleId");
             ViewBag.Name = HttpContext.Session.GetString("Name");
-            ViewBag.StaffId = HttpContext.Session.GetString("StaffId");
+            
 
             ViewBag.CurrentPage = "";
            
@@ -82,17 +77,17 @@ namespace Client.Controllers
             return Json(cases);
         }
 
-        public async Task<JsonResult> GetHandleTickets() {
-            GetSession();
-            if (ViewBag.StaffId != null)
+        /*public async Task<JsonResult> GetHandleTickets(staffId) {
+            
+            if ( staffCase.StaffId != null)
             {
-                var result = await caseRepository.GetTicketsByStaffId(Int32.Parse(ViewBag.StaffId));
+                var result = await caseRepository.GetTicketsByStaffId((int)staffCase.StaffId);
                 return Json(result);
             }
             else {
                 return Json(null);
             }
-        }
+        }*/
 
         public async Task<JsonResult> GetTicketsUser() {
             GetSession();
@@ -197,7 +192,7 @@ namespace Client.Controllers
         }
 
         //Staff Repo
-        public async Task<JsonResult> GetStaffs() {
+        /*public async Task<JsonResult> GetStaffs() {
             GetSession();
             var result = await staffRepository.GetStaffs();
             return Json(result);
@@ -206,7 +201,7 @@ namespace Client.Controllers
         public async Task<IActionResult> GetStaffById(int staffId) {
             var result = await staffRepository.GetStaffById(staffId);
             return Json(result);
-        }
+        }*/
 
         //StatusCode Repo
         public async Task<JsonResult> GetStatusCodes() {
@@ -237,9 +232,9 @@ namespace Client.Controllers
             return View();
         }
         //[Authorize]
-        public IActionResult ManageTickets() {
+        public IActionResult HandleTickets() {
             GetSession();
-            ViewBag.CurrentPage = "ManageTickets";
+            ViewBag.CurrentPage = "HandleTickets";
             return View();
         }
 

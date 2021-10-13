@@ -57,8 +57,6 @@ namespace API
             services.AddScoped<HistoryRepository>();
             services.AddScoped<PriorityRepository>();
             services.AddScoped<RoleRepository>();
-            services.AddScoped<StaffCaseRepository>();
-            services.AddScoped<StaffRepository>();
             services.AddScoped<StatusCodeRepository>();
             services.AddScoped<UserRepository>();
             //lazy loading

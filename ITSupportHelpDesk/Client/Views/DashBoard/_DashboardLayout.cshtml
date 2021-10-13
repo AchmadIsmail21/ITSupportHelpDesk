@@ -72,10 +72,10 @@
                         @if (ViewBag.Role == "IT Support" || ViewBag.Role == "Admin Support")
                         {
                             <li class="nav-item">
-                                <a href="/Dashboard/ManageTickets" class="nav-link @if (ViewBag.CurrentPage == "ManageTickets") { Write("active"); }">
-                                    <i class="nav-icon fas fa-columns"></i>
+                                <a href="/Dashboard/HandleTickets" class="nav-link @if (ViewBag.CurrentPage == "HandleTickets") { Write("active"); }">
+                                    <i class="nav-icon fas fa-address-card"></i>
                                     <p>
-                                        Manage Tickets
+                                        Handle Tickets
                                     </p>
                                 </a>
                             </li>
@@ -85,7 +85,7 @@
 
                             <li class="nav-item">
                                 <a href="/Dashboard/Tickets" class="nav-link @if (ViewBag.CurrentPage == "Tickets") { Write("active"); }">
-                                    <i class="nav-icon fas fa-columns"></i>
+                                    <i class="nav-icon fas fa-address-card"></i>
                                     <p>
                                         Tickets
                                     </p>

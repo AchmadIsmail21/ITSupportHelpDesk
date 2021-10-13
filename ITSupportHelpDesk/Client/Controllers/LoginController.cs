@@ -13,7 +13,7 @@ namespace Client.Controllers
     public class LoginController : Controller
     {
         UserRepository userRepository;
-        StaffRepository staffRepository;
+        
         public LoginController(UserRepository userRepository) {
             this.userRepository = userRepository;
             
@@ -34,6 +34,7 @@ namespace Client.Controllers
             var jwToken = await userRepository.Auth(loginVM);
             var token = jwToken.Token;
             var user = await userRepository.GetUserByEmail(loginVM.Email);
+            
             
             if (jwToken == null) {
                 return RedirectToAction("Index", "Login");

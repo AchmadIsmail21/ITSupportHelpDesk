@@ -41,7 +41,7 @@
                         var current_date = d.getDate();
                         var current_month = d.getMonth() + 1;
                         var current_year = d.getFullYear();
-                        var formatedDate = current_date + '-' + current_month + '-' + current_year;
+                        var formatedDate = current_year + '-' + current_month + '-' + current_date;
                         return formatedDate;
                     }
                     else {
@@ -119,10 +119,10 @@
                     if (data) {
                         var m = data.split(/[T-]/);
                         var d = new Date(parseInt(m[0]), parseInt(m[1]) - 1, parseInt(m[2]));
-                        var curr_date = d.getDate();
-                        var curr_month = d.getMonth() + 1
-                        var curr_year = d.getFullYear();
-                        var formatedDate = d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear();
+                        var current_date = d.getDate();
+                        var current_month = d.getMonth() + 1;
+                        var current_year = d.getFullYear();
+                        var formatedDate = current_year + '-' + current_month + '-' + current_date;
                         return formatedDate;
                     }
                     else
@@ -135,10 +135,10 @@
                     if (data) {
                         var m = data.split(/[T-]/);
                         var d = new Date(parseInt(m[0]), parseInt(m[1]) - 1, parseInt(m[2]));
-                        var curr_date = d.getDate();
-                        var curr_month = d.getMonth() + 1
-                        var curr_year = d.getFullYear();
-                        var formatedDate = d.getDate() + '-' + d.getMonth() + '-' + d.getFullYear();
+                        var current_date = d.getDate();
+                        var current_month = d.getMonth() + 1;
+                        var current_year = d.getFullYear();
+                        var formatedDate = current_year + '-' + current_month + '-' + current_date;
                         return formatedDate;
                     }
                     else
@@ -316,15 +316,50 @@ function createConvertation() {
         contentType: 'application/json',
         data: JSON.stringify(obj)
     }).done((result) => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Gagal menambahkan Percakapan',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        console.log(result);
+    }).fail((error) => {
+
         chatting(obj.CaseId);
         $('#tableTickets').DataTable().ajax.reload();
         $("#inputConvertationMessage").summernote();
-        $('#viewConvertationModal').modal('hide');
-    }).fail((error) => {
-        console.log(error);
+        //$('#viewConvertationModal').modal('hide');
     })
 }
 
+function inputReviewCase(caseId) {
+    $("#inputReviewCaseId").val(parseInt(caseId));
+}
 
+function reviewTicket() {
+    var obj = new Object();
+    obj.CaseId = parseInt($("#inputReviewCaseId").val());
+    obj.Review = parseInt($("#inputReview").val());
+    obj.UserId = viewBagUserId;
+    console.log(obj);
 
+    $.ajax({
+        url: 'https://localhost:44329/API/Cases/Review',
+        type: "POST",
+        dataType: "json",
+        contentType: 'application/json',
+        data: JSON.stringify(obj)
+    }).done((result) => {
+        Swal.fire({
+            title: 'Error!',
+            text: 'Gagal menambahkan Review',
+            icon: 'error',
+            confirmButtonText: 'OK'
+        });
+        console.log(result);
+    }).fail((error) => {
+        $("#tableTickets").DataTable().ajax.reload();
+        /*$("#viewReviewModal").modal('hide');*/
+    });
+}
 

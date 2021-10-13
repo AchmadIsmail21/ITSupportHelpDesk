@@ -176,3 +176,4 @@ C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\D
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Client.dll
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Client.pdb
 C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Client.genruntimeconfig.cache
+C:\Users\achma\Documents\GitHub\ITSupportHelpDesk\ITSupportHelpDesk\Client\obj\Debug\netcoreapp3.1\Razor\Views\DashBoard\HandleTickets.cshtml.g.cs
