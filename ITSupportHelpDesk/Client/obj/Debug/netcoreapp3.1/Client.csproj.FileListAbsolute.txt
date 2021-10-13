@@ -1,9 +1,9 @@
-C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\appsettings.Development.json
-C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\appsettings.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\API.deps.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\API.runtimeconfig.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\API.runtimeconfig.dev.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\API.exe
+C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\appsettings.Development.json
+C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\appsettings.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\Client.exe
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\Client.deps.json
 C:\ITSupportHelpDesk\ITSupportHelpDesk\ITSupportHelpDesk\Client\bin\Debug\netcoreapp3.1\Client.runtimeconfig.json
